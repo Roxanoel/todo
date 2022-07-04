@@ -35,6 +35,10 @@ h1, h2 {
     color: var(--headings);
 }
 
+h1 {
+    align-self: center;
+}
+
 /* MAIN LAYOUT */
 
 body {
@@ -54,9 +58,13 @@ body {
 header {
     grid-column: 1 / -1;
 
+    padding-left: 16px;
+
     height: 100%;
 
     background-color: var(--background-dark);
+    
+    display: grid;
 }
 
 .sidebar {
