@@ -9,7 +9,12 @@ function _createNewProject(title){
     return {
         title: title,
         todoList: [], 
-        default: false
+        default: false,
+
+        //functions
+        addTodoItem: function(item) {
+            this.todoList.push(item);
+        }
     }
 }
 
@@ -30,6 +35,7 @@ function _checkForDefault() {
 function createAndAddProject(title) {
     const proj = _createNewProject(title);
     _addProjectToArray(proj);
+    return proj;
 }
 
 function getProjects() {
