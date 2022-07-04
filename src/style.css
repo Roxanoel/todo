@@ -183,6 +183,30 @@ main {
 
 #delete-project {
     background-color: var(--accent2);
+    background-image: url('./icons/trash-2\ \(1\).svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#edit-project {
+    background-image: url('./icons/edit-2.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#add-task {
+    background-color: var(--accent3);
+    background-image: url('./icons/plus.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 3rem;
+
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+
+    width: 5rem;
+    height: 5rem;
 }
 
 
