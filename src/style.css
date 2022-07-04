@@ -83,6 +83,10 @@ main {
 
     border: 1px solid gray;
     border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .card .collapsed {
@@ -105,4 +109,10 @@ main {
 
 .arrow {
     justify-self: end;
+}
+
+.card .expanded {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
