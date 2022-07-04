@@ -56,13 +56,14 @@ button {
 body {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(auto-fill, minmax(80px, 8vh));
+    grid-template-rows: repeat(auto-fit, minmax(80px, 8vh));
 
     column-gap: 16px;
 
     margin: 0;
 
     min-height: 100vh;
+    min-width: 1280px;
 
     background-color: var(--background-darkest);
 }
