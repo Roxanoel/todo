@@ -1,19 +1,33 @@
+//#region State
+let projects = [];
+const defaultProject = () => {
+    let proj = createNewProject('Default');
+    proj.default = true;
+    addProjectToArray(proj)
+    return proj;
+}
+//#endregion
+
 //#region Functions
-function createNewProject(title){
+function _createNewProject(title){
     return {
         title: title,
         todoList: [], 
         default: false
     }
 }
-//#endregion
-//#region State
-const defaultProject = () => {
-    let proj = createNewProject(defaultProject);
-    proj.default = true;
-    return proj;
+
+// WILL BE REPLACED BY STORAGE LATER!
+function _addProjectToArray(project) {
+    projects.push(project);
+}
+
+function createAndAddProject(title) {
+    const proj = _createNewProject(title);
+    _addProjectToArray(proj);
 }
 //#endregion
+
 //#region Exports
 
 //#endregion
