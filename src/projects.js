@@ -26,8 +26,15 @@ function createAndAddProject(title) {
     const proj = _createNewProject(title);
     _addProjectToArray(proj);
 }
+
+function getProjects() {
+    return projects;
+}
 //#endregion
 
 //#region Exports
-
+export {
+    createAndAddProject,
+    getProjects
+};
 //#endregion
