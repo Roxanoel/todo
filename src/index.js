@@ -9,3 +9,7 @@ console.log(testProject);
 testProject.addTodoItem(taskToAdd);
 
 console.log(testProject);
+
+testProject.removeTodoItem(0);
+
+console.log(testProject);

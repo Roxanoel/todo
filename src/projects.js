@@ -14,6 +14,9 @@ function _createNewProject(title){
         //functions
         addTodoItem: function(item) {
             this.todoList.push(item);
+        },
+        removeTodoItem: function(itemIndex) {
+            this.todoList.splice(+itemIndex, 1);
         }
     }
 }
