@@ -1,8 +1,9 @@
 /* GENERAL */
 :root {
     /* Palette */
-    --background-dark: #5f4a45;
-    --background-mid: #6A534D;
+    --background-darkest: #271c19;
+    --background-dark: #473733;
+    --background-mid: #5F4A45;
     --background-light: #765c56; 
     --separators: #947f7a;
     --headings: #FFFFFE;
@@ -52,7 +53,7 @@ body {
 
     min-height: 100vh;
 
-    background-color: var(--text);
+    background-color: var(--background-darkest);
 }
 
 header {
@@ -149,7 +150,7 @@ main {
 }
 
 .heading h2 {
-    color: var(--text-dark);
+    color: var(--headings);
 }
 
 .tasks-left {
@@ -185,7 +186,7 @@ main {
 
     padding: 16px;
 
-    background-color: var(--background-light);
+    background-color: var(--background-dark);
 }
 
 .task-box h3 {
