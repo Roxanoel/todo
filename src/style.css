@@ -48,7 +48,7 @@ body {
 
     min-height: 100vh;
 
-    background-color: var(--background-light);
+    background-color: var(--text);
 }
 
 header {
@@ -133,11 +133,15 @@ main {
     align-items: baseline;
 
     gap: 16px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--separators);
     padding-bottom: 8px;
     padding-right: 16px;
 
     width: fit-content;
+}
+
+.heading h2 {
+    color: var(--text-dark);
 }
 
 .tasks-left {
@@ -173,11 +177,11 @@ main {
 
     padding: 16px;
 
-    background-color: var(--text);
+    background-color: var(--background-light);
 }
 
 .task-box h3 {
-    color: var(--text-dark);
+    color: var(--headings);
 }
 
 .card {
@@ -188,7 +192,7 @@ main {
     flex-direction: column;
     gap: 8px;
 
-    background-color: var(--background-dark);
+    background-color: var(--text);
     border-radius: 5px;
 }
 
@@ -199,14 +203,14 @@ main {
 }
 
 .task-title {
-    color: var(--headings);
+    color: var(--text-dark);
 }
 
 .tick {
     box-sizing: content-box;
 
-    background-color: var(--separators);
-    border: 1px solid var(--text-dark);
+    background-color: var(--headings);
+    border: 1px solid var(--separators);
     border-radius: 5px;
 
     height: 1rem;
@@ -225,7 +229,7 @@ main {
 }
 
 .descr {
-    color: var(--text);
+    color: var(--text-dark);
     font-size: 16px;
 }
 
@@ -239,4 +243,6 @@ main {
     color: var(--text-dark);
     font-weight: 600;
     font-size: 1rem;
+
+    padding: 8px 16px;
 }
