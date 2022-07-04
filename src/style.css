@@ -1,11 +1,13 @@
 /* GENERAL */
 :root {
     /* Palette */
-    --background-dark: #55423D;
-    --background-mid: #725F5A;
-    --background-light: #A5928D; 
+    --background-dark: #5f4a45;
+    --background-mid: #6A534D;
+    --background-light: #765c56; 
+    --separators: #947f7a;
     --headings: #FFFFFE;
     --text: #FFF3EC;
+    --text-dark: #2c2321;
     --accent1: #FFC0AD;
     --accent2: #E78fB3;
     --accent3: #BEEFC7;
@@ -14,6 +16,7 @@
     /* Defaults */
     box-sizing: border-box;
     margin: 0;
+    font-family: sans-serif;
   }
   
 *,
@@ -28,6 +31,10 @@ ul {
     list-style: none;
 }
 
+h1, h2 {
+    color: var(--headings);
+}
+
 /* MAIN LAYOUT */
 
 body {
@@ -40,6 +47,8 @@ body {
     margin: 0;
 
     min-height: 100vh;
+
+    background-color: var(--background-light);
 }
 
 header {
@@ -47,7 +56,7 @@ header {
 
     height: 100%;
 
-    background-color: brown;
+    background-color: var(--background-dark);
 }
 
 .sidebar {
@@ -56,7 +65,7 @@ header {
 
     padding: 16px;
 
-    background-color: blue;
+    background-color: var(--background-mid);
 
     display: flex;
     flex-direction: column;
@@ -85,7 +94,7 @@ main {
     gap: 8px;
 
     padding-bottom: 16px;
-    border-bottom: 1px solid lightcyan;
+    border-bottom: 1px solid var(--separators);
 }
 
 .projects-list li {
@@ -95,10 +104,12 @@ main {
     padding: 0 8px;
 
     border-radius: 5px;
+
+    color: var(--text);
 }
 
 .projects-list li.selected {
-    background-color: azure;
+    background-color: var(--background-dark);
 }
 
 #add-project {
@@ -106,6 +117,11 @@ main {
 
     border-style: none;
     border-radius: 5px;
+
+    background-color: var(--accent1);
+
+    color: var(--text-dark);
+    font-weight: 600;
 }
 /* MAIN */ 
 .heading-area {
@@ -124,6 +140,26 @@ main {
     width: fit-content;
 }
 
+.tasks-left {
+    color: var(--text);
+}
+
+.heading button {
+    border-radius: 50%;
+    border-style: none;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    background-color: var(--accent1);
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+#delete-project {
+    background-color: var(--accent2);
+}
+
 
 .task-box {
     grid-column: auto / span 3;
@@ -133,22 +169,27 @@ main {
     flex-direction: column;
     gap: 16px;
 
-    border: 1px solid lightblue;
     border-radius: 10px;
 
     padding: 16px;
+
+    background-color: var(--text);
+}
+
+.task-box h3 {
+    color: var(--text-dark);
 }
 
 .card {
     padding: 8px;
     padding-right: 16px;
 
-    border: 1px solid gray;
-    border-radius: 5px;
-
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    background-color: var(--background-dark);
+    border-radius: 5px;
 }
 
 .card .collapsed {
@@ -158,11 +199,14 @@ main {
 }
 
 .task-title {
-
+    color: var(--headings);
 }
 
 .tick {
-    border: 1px solid lightgray;
+    box-sizing: content-box;
+
+    background-color: var(--separators);
+    border: 1px solid var(--text-dark);
     border-radius: 5px;
 
     height: 1rem;
@@ -171,10 +215,28 @@ main {
 
 .arrow {
     justify-self: end;
+    color: var(--separators);
 }
 
 .card .expanded {
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.descr {
+    color: var(--text);
+    font-size: 16px;
+}
+
+#delete-task {
+    border-radius: 5px;
+    border-style: none;
+    background-color: var(--accent2);
+
+    margin: 0 25%;
+
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1rem;
 }
