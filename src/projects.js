@@ -28,6 +28,10 @@ function _addProjectToArray(project) {
     projects.push(project);
 }
 
+function _deleteProject(index) {
+    projects.splice(+index, 1);
+}
+
 function _checkForDefault() {
     // If there is already the default project, do nothing more
     if (projects.find(project => project.default === true)) return;
@@ -49,6 +53,7 @@ function getProjects() {
 //#region Exports
 export {
     createAndAddProject,
-    getProjects
+    getProjects,
+    _deleteProject
 };
 //#endregion
