@@ -236,6 +236,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding-bottom: 8px;
 }
 
 .descr {
@@ -243,16 +244,21 @@ main {
     font-size: 16px;
 }
 
+.btn-container {
+    display: grid;
+}
+
 #delete-task {
     border-radius: 5px;
     border-style: none;
     background-color: var(--accent2);
 
-    margin: 0 25%;
-
     color: var(--text-dark);
     font-weight: 600;
     font-size: 1rem;
 
+    justify-self: end;
+
+    width: fit-content;
     padding: 8px 16px;
 }
