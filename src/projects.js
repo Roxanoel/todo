@@ -1,11 +1,7 @@
 //#region State
 let projects = [];
-const defaultProject = () => {
-    let proj = createNewProject('Default');
-    proj.default = true;
-    addProjectToArray(proj)
-    return proj;
-}
+const defaultProject = _createNewProject('Default');
+    defaultProject.default = true;
 //#endregion
 
 //#region Functions
@@ -19,7 +15,16 @@ function _createNewProject(title){
 
 // WILL BE REPLACED BY STORAGE LATER!
 function _addProjectToArray(project) {
+    _checkForDefault();
+    
     projects.push(project);
+}
+
+function _checkForDefault() {
+    // If there is already the default project, do nothing more
+    if (projects.find(project => project.default === true)) return;
+    // If there isn't, add it. 
+    projects.push(defaultProject);
 }
 
 function createAndAddProject(title) {
