@@ -143,6 +143,8 @@ main {
 
     color: var(--text-dark);
     font-weight: 600;
+
+    margin: 0 20%;
 }
 /* MAIN */ 
 .heading-area {
