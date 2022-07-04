@@ -1,5 +1,16 @@
 /* GENERAL */
 :root {
+    /* Palette */
+    --background-dark: #55423D;
+    --background-light: #A5928D; /* or #725F5A */
+    --headings: #FFFFFE;
+    --text: #FFF3EC;
+    --accent1: #FFC0AD;
+    --accent2: #E78fB3;
+    --accent3: #BEEFC7;
+    --accent4: #9656A1;
+    
+    /* Defaults */
     box-sizing: border-box;
     margin: 0;
   }
