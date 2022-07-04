@@ -1,12 +1,17 @@
+/* GENERAL */
 :root {
     box-sizing: border-box;
+    margin: 0;
   }
   
 *,
 *::before,
 *::after {
     box-sizing: inherit;
+    margin: inherit;
 }
+
+/* MAIN LAYOUT */
 
 body {
     display: grid;
@@ -42,4 +47,62 @@ main {
     
     grid-column: 3 / -1;
     grid-row: 2 / -1;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(auto-fill, minmax(72px, 5vh));
+    column-gap: 16px;
+}
+
+/* SIDEBAR */
+
+/* MAIN */ 
+.title-area {
+    grid-column: 1 / -1;
+
+    display: flex;
+}
+
+.task-box {
+    grid-column: auto / span 3;
+    grid-row: 3 / -1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    border: 1px solid lightblue;
+    border-radius: 10px;
+
+    padding: 16px;
+}
+
+.card {
+    padding: 8px;
+    padding-right: 16px;
+
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.card .collapsed {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+
+}
+
+.task-title {
+
+}
+
+.tick {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+
+    height: 1rem;
+    width: 1rem;
+}
+
+.arrow {
+    justify-self: end;
 }
