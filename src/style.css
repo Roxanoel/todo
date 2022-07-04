@@ -2,7 +2,8 @@
 :root {
     /* Palette */
     --background-dark: #55423D;
-    --background-light: #A5928D; /* or #725F5A */
+    --background-mid: #725F5A;
+    --background-light: #A5928D; 
     --headings: #FFFFFE;
     --text: #FFF3EC;
     --accent1: #FFC0AD;
