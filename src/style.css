@@ -245,9 +245,13 @@ main {
 }
 
 .card .collapsed {
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    display: flex;
+    justify-content: space-between;
+}
 
+.title-container {
+    display: flex;
+    gap: 8px;
 }
 
 .task-title {
