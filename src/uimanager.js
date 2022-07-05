@@ -51,6 +51,7 @@ function generateMain() {
     // Task boxes * 3
     const highPriority = generateTaskBox('high-priority');
     highPriority.firstChild.textContent = 'High Priority';
+    highPriority.appendChild(createCard(''));
 
     const medPriority = generateTaskBox('med-priority');
     medPriority.firstChild.textContent = 'Medium Priority';
@@ -129,8 +130,10 @@ function createCard(task) {
     const card = document.createElement('div');
     card.classList.add('card');
 
-    const collapsed = createCardTop(task);
+    card.appendChild(createCardTop(task));
+    card.appendChild(createCardBottom(task));
 
+    return card;
 }
 
 function createCardTop(task) {
@@ -159,6 +162,25 @@ function createCardTop(task) {
     collapsed.appendChild(arrow);
 
     return collapsed;
+}
+
+function createCardBottom(task) {
+    const expanded = document.createElement('div');
+    expanded.classList.add('expanded');
+
+    const descr = document.createElement('div');
+    descr.classList.add('descr');
+    descr.textContent = task.description;
+
+    const btnContainer = document.createElement('div');
+    btnContainer.classList.add('btn-container');
+    const btn = createButtonWithId('delete-task', 'Delete');
+    btnContainer.appendChild(btn);
+
+    expanded.appendChild(descr);
+    expanded.appendChild(btnContainer);
+
+    return expanded;
 }
 
 //#endregion
