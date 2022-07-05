@@ -1,6 +1,6 @@
 import './style.css';
 
-import { generateGeneralLayout, updateProjectsList } from './uimanager';
+import { generateGeneralLayout, updateProjectsList } from "./uimanager.js";
 
 import { createTodoItem } from "./todo.js";
 import { createAndAddProject, getProjects, _deleteProject } from "./projects.js";

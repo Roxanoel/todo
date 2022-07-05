@@ -14,6 +14,7 @@ function generateGeneralLayout() {
     // Append sidebar
     body.appendChild(generateSidebar());
     // Append main
+    body.appendChild(generateMain());
 }
 
 function generateHeader() {
@@ -37,12 +38,20 @@ function generateSidebar() {
     sidebar.appendChild(projectsList);
     //generate list content with its own method?
 
-    const btn = document.createElement('button');
-    btn.setAttribute('id', 'add-project');
-    btn.textContent = 'Add new project';
+    const btn = createButtonWithId('add-project', 'Add new project');
     sidebar.appendChild(btn);
 
     return sidebar;
+}
+
+function generateMain() {
+    const main = document.createElement('main');
+    // heading area
+    main.appendChild(generateHeadingArea(''));
+    // Task boxes * 3
+
+
+    return main;
 }
 
 //#region Sidebar contents
@@ -63,6 +72,55 @@ function clearProjectsList(projectsList) {
         projectsList.removeChild(projectsList.lastChild);
     }
 }
+//#endregion
+
+//#region Main contents
+function generateHeadingArea(currentProject) {
+    const headingArea = document.createElement('div');
+    headingArea.classList.add('heading-area');
+
+    const heading = document.createElement('div');
+    heading.classList.add('heading');
+
+    const projectName = document.createElement('h2');
+    //projectName.textContent = currentProject.title; 
+    projectName.textContent = 'HARDCODED FOR TESTING';
+    
+    const tasksLeft = document.createElement('div');
+    tasksLeft.classList.add('tasks-left');
+    tasksLeft.textContent = 'x tasks left';
+
+    const addBtn = createButtonWithId('add-task', '');
+
+    const editBtn = createButtonWithId('edit-project', '');
+
+    const deleteBtn = createButtonWithId('delete-project', '');
+
+    heading.appendChild(projectName);
+    heading.appendChild(tasksLeft);
+    heading.appendChild(addBtn);
+    heading.appendChild(editBtn);
+    heading.appendChild(deleteBtn);
+
+    headingArea.appendChild(heading);
+
+    return headingArea;
+}
+
+function generateTaskBox(priorityClass) {
+
+}
+//#endregion
+
+//#region UTIL
+
+function createButtonWithId(id, textContent) {
+    const btn = document.createElement('button');
+    btn.setAttribute('id', id);
+    btn.textContent = textContent;
+    return btn;
+}
+
 //#endregion
 
 //#region Exports
