@@ -51,7 +51,6 @@ function generateMain() {
     // Task boxes * 3
     const highPriority = generateTaskBox('high-priority');
     highPriority.firstChild.textContent = 'High Priority';
-    highPriority.appendChild(createCard(''));
 
     const medPriority = generateTaskBox('med-priority');
     medPriority.firstChild.textContent = 'Medium Priority';
