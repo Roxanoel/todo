@@ -46,11 +46,28 @@ function generateSidebar() {
 }
 
 //#region Sidebar contents
+function updateProjectsList(projectsArray) {
+    const projectsList = document.querySelector('.projects-list');
+    
+    clearProjectsList(projectsList);
+    
+    projectsArray.forEach(project => {
+        const entry = document.createElement('li');
+        entry.textContent = project.title;
+        projectsList.appendChild(entry);
+    })
+}
 
+function clearProjectsList(projectsList) {
+    while(projectsList.lastChild) {
+        projectsList.removeChild(projectsList.lastChild);
+    }
+}
 //#endregion
 
 //#region Exports
 export {
-    generateGeneralLayout
+    generateGeneralLayout,
+    updateProjectsList
 }
 //#endregion
