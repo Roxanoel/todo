@@ -278,7 +278,18 @@ main {
 
 .arrow {
     justify-self: end;
-    color: var(--separators);
+    
+    background-image: url('./icons/chevron-down.svg');
+    background-position: center;
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+
+    width: 1.5rem;
+    height: 100%;
+}
+
+.arrow.up {
+    background-image: url('./icons/chevron-up.svg');
 }
 
 .card .expanded {
