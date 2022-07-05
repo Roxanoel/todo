@@ -269,6 +269,13 @@ main {
     width: 1rem;
 }
 
+.ticked {
+    background-image: url('./icons/check.svg');
+    background-position: center;
+    background-size: 1rem;
+    background-repeat: no-repeat;
+}
+
 .arrow {
     justify-self: end;
     color: var(--separators);
