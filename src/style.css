@@ -49,8 +49,24 @@ h1 {
 
 button {
     font-size: 1rem;
+
+    border-radius: 5px;
+    border-style: none;
 }
 
+input, select, textarea {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+textarea {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+label {
+    font-weight: 600;
+}
 
 /* MAIN LAYOUT */
 
@@ -325,4 +341,61 @@ main {
 
     width: fit-content;
     padding: 8px 16px;
+}
+
+/* MODALS */
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+
+    display: grid;
+}
+.modal-contents {
+    display: flex;
+    flex-direction: column;
+
+    width: 30vw;
+    min-height: 20vh;
+
+    background-color: var(--text);
+    border-radius: 15px 15px 10px 10px;
+
+    align-self: center;
+    justify-self: center;
+
+}
+
+.modal-contents h2 {
+    background-color: var(--background-mid);
+
+    border-radius: 10px 10px 0 0;
+
+    padding: 8px;
+}
+
+.modal-contents form {
+    display: flex;
+    flex-direction: column;
+
+    padding: 16px;
+    gap: 8px;
+}
+
+.modal-contents button {
+    background-color: var(--accent2);
+
+    width: fit-content;
+
+    padding: 0.5rem 1rem;
+
+    align-self: center;
+    justify-self: center;
+
+    margin-top: 8px;
+
+    font-weight: 600;
 }

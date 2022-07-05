@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing for TO DO</title>
-    <script src="main.js" defer></script>
+    <title>REFERENCE FOR LAYOUT</title>
     <link rel="stylesheet" href="../src/style.css">
 </head>
 <body>
@@ -64,5 +63,26 @@
             <h3>Low priority</h3>
         </div>
     </main>
+    <div class="modal">
+        <div class="modal-contents">
+            <h2>New Task</h2>
+            <form>
+                <label for="task-title-field">Title: </label>
+                <input type="text" id="task-title-field" name="task-title-field" required>
+                <label for="task-description-field">Description: </label>
+                <textarea id="task-description-field" name="task-description-field" rows="6"></textarea>
+                <label for="due-date-field">Due date: </label>
+                <input type="date" id="due-date-field" name="due-date-field">
+                <label for="priority-level-field">Priority level: </label>
+                <select name="priority-level-field" id="priority-level-field">
+                    <option value="high-priority">High</option>
+                    <option value="mid-priority">Medium</option>
+                    <option value="low-priority">Low</option>
+                </select>
+                <div class="btn-container">
+                    <button id="submit-new-task">Add</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
