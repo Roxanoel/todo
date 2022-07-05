@@ -10,14 +10,14 @@ const appName = 'My Planner';
 //#region General Layout generation
 function generateGeneralLayout() {
     // Append header
-    body.appendChild(generateHeader());
+    body.appendChild(createHeader());
     // Append sidebar
-    body.appendChild(generateSidebar());
+    body.appendChild(createSidebar());
     // Append main
-    body.appendChild(generateMain());
+    body.appendChild(createMain());
 }
 
-function generateHeader() {
+function createHeader() {
     const header = document.createElement('header');
     const appTitle = document.createElement('h1');
     appTitle.textContent = appName;
@@ -25,7 +25,7 @@ function generateHeader() {
     return header;
 }
 
-function generateSidebar() {
+function createSidebar() {
     const sidebar = document.createElement('div');
     sidebar.classList.add('sidebar');
 
@@ -44,18 +44,18 @@ function generateSidebar() {
     return sidebar;
 }
 
-function generateMain() {
+function createMain() {
     const main = document.createElement('main');
     // heading area
-    main.appendChild(generateHeadingArea(''));
+    main.appendChild(createHeadingArea(''));
     // Task boxes * 3
-    const highPriority = generateTaskBox('high-priority');
+    const highPriority = createTaskBox('high-priority');
     highPriority.firstChild.textContent = 'High Priority';
 
-    const medPriority = generateTaskBox('med-priority');
+    const medPriority = createTaskBox('med-priority');
     medPriority.firstChild.textContent = 'Medium Priority';
 
-    const lowPriority = generateTaskBox('low-priority');
+    const lowPriority = createTaskBox('low-priority');
     lowPriority.firstChild.textContent = 'Low Priority';
 
     main.appendChild(highPriority);
@@ -86,7 +86,7 @@ function clearProjectsList(projectsList) {
 //#endregion
 
 //#region Main contents
-function generateHeadingArea(currentProject) {
+function createHeadingArea(currentProject) {
     const headingArea = document.createElement('div');
     headingArea.classList.add('heading-area');
 
@@ -118,7 +118,7 @@ function generateHeadingArea(currentProject) {
     return headingArea;
 }
 
-function generateTaskBox(priorityClass) {
+function createTaskBox(priorityClass) {
     const box = document.createElement('div');
     box.classList.add('task-box', priorityClass);
     box.appendChild(document.createElement('h3'));
