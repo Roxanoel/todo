@@ -49,7 +49,18 @@ function generateMain() {
     // heading area
     main.appendChild(generateHeadingArea(''));
     // Task boxes * 3
+    const highPriority = generateTaskBox('high-priority');
+    highPriority.firstChild.textContent = 'High Priority';
 
+    const medPriority = generateTaskBox('med-priority');
+    medPriority.firstChild.textContent = 'Medium Priority';
+
+    const lowPriority = generateTaskBox('low-priority');
+    lowPriority.firstChild.textContent = 'Low Priority';
+
+    main.appendChild(highPriority);
+    main.appendChild(medPriority);
+    main.appendChild(lowPriority);
 
     return main;
 }
@@ -108,7 +119,10 @@ function generateHeadingArea(currentProject) {
 }
 
 function generateTaskBox(priorityClass) {
-
+    const box = document.createElement('div');
+    box.classList.add('task-box', priorityClass);
+    box.appendChild(document.createElement('h3'));
+    return box;
 }
 //#endregion
 
