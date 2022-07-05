@@ -51,6 +51,7 @@ button {
     font-size: 1rem;
 }
 
+
 /* MAIN LAYOUT */
 
 body {
@@ -297,6 +298,10 @@ main {
     flex-direction: column;
     gap: 8px;
     padding-bottom: 8px;
+}
+
+.card .expanded.hidden {
+    display: none;
 }
 
 .descr {

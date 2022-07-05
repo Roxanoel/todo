@@ -180,6 +180,8 @@ function createCardBottom(task) {
     expanded.appendChild(descr);
     expanded.appendChild(btnContainer);
 
+    expanded.classList.add('hidden');
+
     return expanded;
 }
 
