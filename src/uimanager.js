@@ -124,6 +124,43 @@ function generateTaskBox(priorityClass) {
     box.appendChild(document.createElement('h3'));
     return box;
 }
+
+function createCard(task) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const collapsed = createCardTop(task);
+
+}
+
+function createCardTop(task) {
+    const collapsed = document.createElement('div');
+    collapsed.classList.add('collapsed');
+
+    const titleContainer = document.createElement('div');
+    titleContainer.classList.add('title-container');
+    
+    const checkBox = document.createElement('div');
+    checkBox.classList.add('tick');
+    // logic to determine whether the box should be ticked or not
+    if (task.done) checkBox.classList.add('ticked');
+
+    const heading = document.createElement('h4');
+    heading.classList.add('task-title');
+    heading.textContent = task.title;
+
+    titleContainer.appendChild(checkBox);
+    titleContainer.appendChild(heading);
+
+    const arrow = document.createElement('div');
+    arrow.classList.add('arrow');
+
+    collapsed.appendChild(titleContainer);
+    collapsed.appendChild(arrow);
+
+    return collapsed;
+}
+
 //#endregion
 
 //#region UTIL
