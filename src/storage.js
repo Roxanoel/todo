@@ -9,6 +9,19 @@ function retrieveFromStorage(id) {
 let objectData = localStorage.getItem(id);
 return JSON.parse(objectData);
 }
+
+function retrieveAllFromStorage() {
+    var objects = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+        objects.push( localStorage.getItem(keys[i]) );
+    }
+
+    return objects;
+}
+
 //#endregion
 
 //#region REMOVING/CLEARING

@@ -35,6 +35,10 @@ function _extractProjectData(project) {
 
 //#region Other functions
 
+function loadAllProjectsFromStorage() {
+    
+}
+
 function _reconstituteProject(savedData) {
     const proj = _createNewProject(savedData.title);
     proj.todoList = savedData.todoList;
