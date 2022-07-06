@@ -116,7 +116,7 @@ function checkForDuplicateTitle(value) {
 
 //#region Exports
 export {
-    tryAdd,
+    tryAdd as tryAddProject,
     getProjects,
     _deleteProject
 };
