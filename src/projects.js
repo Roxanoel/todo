@@ -2,7 +2,7 @@ import _, { addToStorage, removeFromStorage } from "./storage.js";
 
 //#region State/init
 let projects = [];
-const defaultProject = createAndAddProject('Default');
+const defaultProject = createAndAddProject('Default', true);
     defaultProject.default = true;
 //#endregion
 
@@ -11,7 +11,7 @@ function _createNewProject(title, isDefault){
     return {
         title: title,
         todoList: [], 
-        default: false,
+        default: isDefault,
 
         //functions
         addTodoItem: function(item) {
@@ -67,8 +67,8 @@ function _checkForDefault() {
     projects.push(defaultProject);
 }
 
-function createAndAddProject(title) {
-    const proj = _createNewProject(title);
+function createAndAddProject(title, isDefault) {
+    const proj = _createNewProject(title, isDefault);
     _addProject(proj);
     return proj;
 }
