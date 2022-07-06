@@ -1,4 +1,15 @@
+//#region STORING
+function storeObject(id, object) {
+    localStorage.setItem(id, JSON.stringify(object));
+}
+//#endregion
 
+//#region RETRIEVING
+function retrieveObject(id) {
+let objectData = localStorage.getItem(id);
+return JSON.parse(objectData);
+}
+//#endregion
 
 //#region UTILS
 function storageAvailable(type) {
