@@ -1,5 +1,9 @@
 import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./storage.js";
 
+//#region STATE
+const maxProjects = 10;
+//#endregion
+
 //#region INIT
 let projects = (() => {
     // Empty array to store results
@@ -85,8 +89,13 @@ function _generateDefaultProject() {
 function tryAdd(title, isDefault) {
     if (checkForDuplicateTitle(title)) {
         console.log("Unable to add, there is already a project with that title.");
+        return;
     }
-    else 
+    
+    if (projects.length >= maxProjects) {
+        console.log(`Unable to add project, maximum = ${maxProjects}`);
+    }
+
     _createAndAddProject(title, isDefault);
 }
 
