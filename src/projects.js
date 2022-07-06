@@ -45,10 +45,6 @@ function _extractProjectData(project) {
 
 //#region Other functions
 
-function loadAllProjectsFromStorage() {
-
-}
-
 function _reconstituteProject(savedData) {
     const proj = _createNewProject(savedData.title);
     proj.todoList = savedData.todoList;
@@ -86,7 +82,15 @@ function _generateDefaultProject() {
     addToStorage(defaultProj.title, _extractProjectData(defaultProj));
 }
 
-function createAndAddProject(title, isDefault) {
+function tryAdd(title, isDefault) {
+    if (checkForDuplicateTitle(title)) {
+        console.log("Unable to add, there is already a project with that title.");
+    }
+    else 
+    _createAndAddProject(title, isDefault);
+}
+
+function _createAndAddProject(title, isDefault) {
     const proj = _createNewProject(title, isDefault);
     _addProject(proj);
     return proj;
@@ -96,14 +100,14 @@ function getProjects() {
     return projects;
 }
 
-function checkForDuplicate(property, value) {
-
+function checkForDuplicateTitle(value) {
+    return projects.find(project => project.title === value);
 }
 //#endregion
 
 //#region Exports
 export {
-    createAndAddProject,
+    tryAdd,
     getProjects,
     _deleteProject
 };
