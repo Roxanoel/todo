@@ -11,3 +11,4 @@ const testProject = createAndAddProject('Project 3');
 const testProject2 = createAndAddProject('Another project');
 
 updateProjectsList(getProjects());
+console.log(getProjects());

@@ -16,7 +16,7 @@ function retrieveAllFromStorage() {
         i = keys.length;
 
     while ( i-- ) {
-        objects.push( localStorage.getItem(keys[i]) );
+        objects.push( retrieveFromStorage(keys[i]) );
     }
 
     return objects;
@@ -71,5 +71,6 @@ addToStorage,
 retrieveFromStorage,
 removeFromStorage,
 clearStorage,
+retrieveAllFromStorage
 };
 //#endregion

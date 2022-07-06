@@ -1,7 +1,18 @@
-import _, { addToStorage, removeFromStorage } from "./storage.js";
+import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./storage.js";
 
-//#region State/init
-let projects = [];
+//#region INIT
+let projects = (() => {
+    // Empty array to store results
+    const projs = [];
+    // Retrieving JSON data
+    const data = retrieveAllFromStorage();
+    // Reassembling full objects from JSON data
+    data.forEach(datum => {
+        const obj = _reconstituteProject(datum);
+        projs.push(obj);
+    })
+    return projs;
+})();
 
 //#endregion
 
@@ -83,6 +94,10 @@ function createAndAddProject(title, isDefault) {
 
 function getProjects() {
     return projects;
+}
+
+function checkForDuplicate(property, value) {
+
 }
 //#endregion
 
