@@ -21,6 +21,14 @@ function _createNewProject(title){
     }
 }
 
+function _extractProjectData(project) {
+    return {
+        title: project.title,
+        todoList: project.todoList,
+        default: project.default,
+    }
+}
+
 // WILL BE REPLACED BY STORAGE LATER!
 function _addProjectToArray(project) {
     _checkForDefault();
