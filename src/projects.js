@@ -2,8 +2,7 @@ import _, { addToStorage, removeFromStorage } from "./storage.js";
 
 //#region State/init
 let projects = [];
-const defaultProject = createAndAddProject('Default', true);
-    defaultProject.default = true;
+
 //#endregion
 
 //#region Factory functions
@@ -36,7 +35,7 @@ function _extractProjectData(project) {
 //#region Other functions
 
 function loadAllProjectsFromStorage() {
-    
+
 }
 
 function _reconstituteProject(savedData) {
@@ -66,9 +65,14 @@ function _deleteProject(index) {
 function _checkForDefault() {
     // If there is already the default project, do nothing more
     if (projects.find(project => project.default === true)) return;
-    // If there isn't, add it to storage and array.
-    addToStorage(defaultProject.title, _extractProjectData(defaultProject)); 
-    projects.push(defaultProject);
+    // If there isn't: 
+    _generateDefaultProject();
+}
+
+function _generateDefaultProject() {
+    const defaultProj = _createNewProject('Default', true);
+    projects.push(defaultProj);
+    addToStorage(defaultProj.title, _extractProjectData(defaultProj));
 }
 
 function createAndAddProject(title, isDefault) {

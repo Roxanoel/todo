@@ -7,7 +7,7 @@ import { createAndAddProject, getProjects, _deleteProject } from "./projects.js"
 
 generateGeneralLayout();
 
-const testProject = createAndAddProject('Project 1');
+const testProject = createAndAddProject('Project 3');
 const testProject2 = createAndAddProject('Another project');
 
 updateProjectsList(getProjects());
