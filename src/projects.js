@@ -1,13 +1,13 @@
-import _ from "./storage.js";
+import _, { addToStorage, removeFromStorage } from "./storage.js";
 
-//#region State
+//#region State/init
 let projects = [];
-const defaultProject = _createNewProject('Default');
+const defaultProject = createAndAddProject('Default');
     defaultProject.default = true;
 //#endregion
 
-//#region Functions
-function _createNewProject(title){
+//#region Factory functions
+function _createNewProject(title, isDefault){
     return {
         title: title,
         todoList: [], 
@@ -31,33 +31,45 @@ function _extractProjectData(project) {
     }
 }
 
+//#endregion
+
+//#region Other functions
+
 function _reconstituteProject(savedData) {
-    const proj = createAndAddProject(savedData.title);
+    const proj = _createNewProject(savedData.title);
     proj.todoList = savedData.todoList;
     proj.default = savedData.default;
+    return proj;
 }
 
-// Local array 
-function _addProjectToArray(project) {
+function _addProject(project) {
     _checkForDefault();
     
+    // Add to storage
+    const projectData = _extractProjectData(project);
+    addToStorage(project.title, projectData);
+    // Add to local array
     projects.push(project);
 }
 
 function _deleteProject(index) {
+    const proj = projects[+index];
+    
+    removeFromStorage(proj.title);
     projects.splice(+index, 1);
 }
 
 function _checkForDefault() {
     // If there is already the default project, do nothing more
     if (projects.find(project => project.default === true)) return;
-    // If there isn't, add it. 
+    // If there isn't, add it to storage and array.
+    addToStorage(defaultProject.title, _extractProjectData(defaultProject)); 
     projects.push(defaultProject);
 }
 
 function createAndAddProject(title) {
     const proj = _createNewProject(title);
-    _addProjectToArray(proj);
+    _addProject(proj);
     return proj;
 }
 
