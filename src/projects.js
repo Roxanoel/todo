@@ -1,3 +1,5 @@
+import _ from "./storage.js";
+
 //#region State
 let projects = [];
 const defaultProject = _createNewProject('Default');
@@ -29,7 +31,13 @@ function _extractProjectData(project) {
     }
 }
 
-// WILL BE REPLACED BY STORAGE LATER!
+function _reconstituteProject(savedData) {
+    const proj = createAndAddProject(savedData.title);
+    proj.todoList = savedData.todoList;
+    proj.default = savedData.default;
+}
+
+// Local array 
 function _addProjectToArray(project) {
     _checkForDefault();
     

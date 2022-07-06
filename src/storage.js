@@ -1,18 +1,18 @@
 //#region STORING
-function storeObject(id, object) {
+function addToStorage(id, object) {
     localStorage.setItem(id, JSON.stringify(object));
 }
 //#endregion
 
 //#region RETRIEVING
-function retrieveObject(id) {
+function retrieveFromStorage(id) {
 let objectData = localStorage.getItem(id);
 return JSON.parse(objectData);
 }
 //#endregion
 
 //#region REMOVING/CLEARING
-function removeObject(id) {
+function removeFromStorage(id) {
     localStorage.removeItem(id);
 }
 
@@ -50,4 +50,13 @@ function storageAvailable(type) {
 function checkIfStorageWasPopulated() {
     return (localStorage.length > 0);
 }
+//#endregion
+
+//#region EXPORTS 
+export {
+addToStorage,
+retrieveFromStorage,
+removeFromStorage,
+clearStorage,
+};
 //#endregion
