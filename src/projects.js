@@ -86,7 +86,7 @@ function _generateDefaultProject() {
     addToStorage(defaultProj.title, _extractProjectData(defaultProj));
 }
 
-function tryAdd(title, isDefault) {
+function tryAddProject(title, isDefault) {
     if (checkForDuplicateTitle(title)) {
         console.log("Unable to add, there is already a project with that title.");
         return;
@@ -112,11 +112,12 @@ function getProjects() {
 function checkForDuplicateTitle(value) {
     return projects.find(project => project.title === value);
 }
+
 //#endregion
 
 //#region Exports
 export {
-    tryAdd as tryAddProject,
+    tryAddProject,
     getProjects,
     _deleteProject
 };
