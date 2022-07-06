@@ -11,6 +11,16 @@ return JSON.parse(objectData);
 }
 //#endregion
 
+//#region REMOVING/CLEARING
+function removeObject(id) {
+    localStorage.removeItem(id);
+}
+
+function clearStorage() {
+    localStorage.clear();
+}
+//#endregion
+
 //#region UTILS
 function storageAvailable(type) {
     var storage;
