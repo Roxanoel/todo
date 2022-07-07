@@ -1,3 +1,4 @@
+import { createSidebar, updateProjectsList } from "./ui-sidebar";
 import { createModal, newProjectModal, newTaskModal, clickOutsideModalContents } from "./ui-modals";
 
 //#region References 
@@ -35,25 +36,6 @@ function createHeader() {
     return header;
 }
 
-function createSidebar() {
-    const sidebar = document.createElement('div');
-    sidebar.classList.add('sidebar');
-
-    const heading = document.createElement('h2');
-    heading.textContent = 'Projects';
-    sidebar.appendChild(heading);
-
-    const projectsList = document.createElement('ul');
-    projectsList.classList.add('projects-list');
-    sidebar.appendChild(projectsList);
-    //generate list content with its own method?
-
-    const btn = createButtonWithId('add-project', 'Add new project');
-    sidebar.appendChild(btn);
-
-    return sidebar;
-}
-
 function createMain() {
     const main = document.createElement('main');
     // heading area
@@ -77,23 +59,7 @@ function createMain() {
 //#endregion
 
 //#region Sidebar contents
-function updateProjectsList(projectsArray) {
-    const projectsList = document.querySelector('.projects-list');
-    
-    clearProjectsList(projectsList);
-    
-    projectsArray.forEach(project => {
-        const entry = document.createElement('li');
-        entry.textContent = project.title;
-        projectsList.appendChild(entry);
-    })
-}
 
-function clearProjectsList(projectsList) {
-    while(projectsList.lastChild) {
-        projectsList.removeChild(projectsList.lastChild);
-    }
-}
 //#endregion
 
 //#region Main contents
@@ -197,43 +163,6 @@ function createCardBottom(task) {
 
 //#endregion
 
-//#region UTIL
-
-function createButtonWithId(id, textContent) {
-    const btn = document.createElement('button');
-    btn.setAttribute('id', id);
-    btn.textContent = textContent;
-    return btn;
-}
-
-function appendLabelAndInput(parent, labelText, id, inputType, isRequired) {
-    const label = document.createElement('label');
-    label.setAttribute('for', id);
-    label.textContent = labelText
-
-    const input = document.createElement('input');
-    input.setAttribute('id', id);
-    input.setAttribute('type', inputType);
-    input.setAttribute('name', id);
-    if (isRequired) input.required = true;
-
-    parent.appendChild(label);
-    parent.appendChild(input);
-}
-
-function appendLabelAndTextarea(parent, labelText, id, isRequired) {
-    const label = document.createElement('label');
-    label.setAttribute('for', id);
-    label.textContent = labelText;
-
-    const input = document.createElement('textarea');
-    input.setAttribute('id', id);
-    input.setAttribute('name', id);
-    if (isRequired) input.required = true;
-
-    parent.appendChild(label);
-    parent.appendChild(input);
-}
 
 
 //#endregion
