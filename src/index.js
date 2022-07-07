@@ -12,8 +12,6 @@ const testProject = tryAddProject('Project 2', '');
 const newTask = createTodoItem('Test task', 'defbhebf', 'fbfgefbeeh', 'low-priority');
 
 testProject.addTodoItem(newTask);
-console.log(testProject);
-testProject.removeTodoItem(newTask);
 
 updateProjectsList(getProjects());
 console.log(getProjects());
