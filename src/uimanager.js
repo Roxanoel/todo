@@ -42,6 +42,7 @@ function createSidebar() {
 
     const btn = createButtonWithId('add-project', 'Add new project');
     sidebar.appendChild(btn);
+    btn.addEventListener('click', newProjectModal);
 
     return sidebar;
 }
