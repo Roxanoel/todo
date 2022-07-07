@@ -1,4 +1,4 @@
-import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./storage.js";
+import _, { addToStorage, removeFromStorage, retrieveAllFromStorage, storageWasPopulated } from "./storage.js";
 
 //#region STATE
 const maxProjects = 10;
@@ -9,12 +9,14 @@ let projects = (() => {
     // Empty array to store results
     const projs = [];
     // Retrieving JSON data
-    const data = retrieveAllFromStorage();
-    // Reassembling full objects from JSON data
-    data.forEach(datum => {
-        const obj = _reconstituteProject(datum);
-        projs.push(obj);
-    })
+    if (storageWasPopulated) {
+        const data = retrieveAllFromStorage();
+        // Reassembling full objects from JSON data
+        data.forEach(datum => {
+            const obj = _reconstituteProject(datum);
+            projs.push(obj);
+        })
+    }
     return projs;
 })();
 

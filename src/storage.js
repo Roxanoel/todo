@@ -11,6 +11,8 @@ return JSON.parse(objectData);
 }
 
 function retrieveAllFromStorage() {
+    if (!storageWasPopulated) return;
+
     var objects = [],
         keys = Object.keys(localStorage),
         i = keys.length;
@@ -60,7 +62,7 @@ function storageAvailable(type) {
     }
 }
 
-function checkIfStorageWasPopulated() {
+function storageWasPopulated() {
     return (localStorage.length > 0);
 }
 //#endregion
@@ -71,6 +73,6 @@ addToStorage,
 retrieveFromStorage,
 removeFromStorage,
 clearStorage,
-retrieveAllFromStorage
+retrieveAllFromStorage,
 };
 //#endregion
