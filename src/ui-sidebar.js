@@ -1,5 +1,6 @@
 import { createButtonWithId } from "./ui-utils";
 
+
 function createSidebar() {
     const sidebar = document.createElement('div');
     sidebar.classList.add('sidebar');
@@ -11,10 +12,13 @@ function createSidebar() {
     const projectsList = document.createElement('ul');
     projectsList.classList.add('projects-list');
     sidebar.appendChild(projectsList);
-    //generate list content with its own method?
 
     const btn = createButtonWithId('add-project', 'Add new project');
     sidebar.appendChild(btn);
+
+    document.addEventListener('projectsUpdated', (e)=> {
+        updateProjectsList(e.detail);
+    });
 
     return sidebar;
 }

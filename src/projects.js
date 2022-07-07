@@ -2,9 +2,36 @@ import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./st
 
 //#region STATE
 const maxProjects = 10;
+let projects = [];
 //#endregion
 
-//#region EVENTS
+//#region INIT
+function initializeProjectsList(){
+    // If no storage, generate default & return
+    if (localStorage.length < 1) {
+        _generateDefaultProject();
+    }
+    else {
+        // Retrieving JSON data
+        const data = retrieveAllFromStorage();
+        // Reassembling full objects from JSON data
+        data.forEach(datum => {
+        const obj = _reconstituteProject(datum);
+        projects.push(obj);
+        });
+    }
+    
+    document.dispatchEvent(projectsUpdatedEvent);
+};
+//#endregion
+
+//#region EVENTS - DEFINITION
+const projectsUpdatedEvent = new CustomEvent('projectsUpdated', {
+    detail: projects
+})
+//#endregion
+
+//#region EVENTS - LISTENING
 document.addEventListener('newProjectSubmitted', handleNewProjectSubmitted);
 document.addEventListener('newTaskSubmitted', handleNewTaskSubmitted)
 
@@ -17,21 +44,6 @@ function handleNewTaskSubmitted(e) {
 }
 //#endregion
 
-//#region INIT
-let projects = (() => {
-    // Empty array to store results
-    const projs = [];
-    // Retrieving JSON data
-    const data = retrieveAllFromStorage();
-    // Reassembling full objects from JSON data
-    data.forEach(datum => {
-        const obj = _reconstituteProject(datum);
-        projs.push(obj);
-    })
-    return projs;
-})();
-
-//#endregion
 
 //#region Factory functions
 function _createNewProject(title, isDefault){
@@ -135,6 +147,6 @@ function checkForDuplicateTitle(value) {
 export {
     tryAddProject,
     getProjects,
-    _deleteProject
+    initializeProjectsList
 };
 //#endregion
