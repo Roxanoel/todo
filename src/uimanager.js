@@ -17,7 +17,6 @@ function generateGeneralLayout() {
     body.appendChild(createMain());
     // Append modal 
     body.appendChild(createModal());
-    newTaskModal();
 }
 
 function createHeader() {
@@ -193,7 +192,7 @@ function createCardBottom(task) {
 //#region MODALS 
 function createModal() {
     const modal = document.createElement('div');
-    modal.classList.add('modal', /*'hidden'*/);
+    modal.classList.add('modal', 'hidden');
 
     const modalContents = document.createElement('div');
     modalContents.classList.add('modal-contents');
@@ -221,7 +220,7 @@ function newProjectModal() {
 
     form.appendChild(createButtonWithId('submit-form', 'Add project'));
 
-    //modalToggleHidden();
+    modalToggleHidden();
 }
 
 function newTaskModal() {
