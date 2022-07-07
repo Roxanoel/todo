@@ -30,9 +30,11 @@ function _createNewProject(title, isDefault){
         //functions
         addTodoItem: function(item) {
             this.todoList.push(item);
+            addToStorage(this.title, _extractProjectData(this));
         },
         removeTodoItem: function(itemIndex) {
             this.todoList.splice(+itemIndex, 1);
+            addToStorage(this.title, _extractProjectData(this));
         }
     }
 }
