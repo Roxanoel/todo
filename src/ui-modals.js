@@ -90,7 +90,7 @@ function newTaskModal() {
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
     
     // Button
-    const btn = createButtonWithId('submit-form', 'Add project');
+    const btn = createButtonWithId('submit-form', 'Add task');
     form.appendChild(btn);
     btn.addEventListener('click', handleSubmitNewTask);
 
