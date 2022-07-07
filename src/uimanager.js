@@ -17,6 +17,9 @@ function generateGeneralLayout() {
     body.appendChild(createMain());
     // Append modal 
     body.appendChild(createModal());
+
+    // Listeners
+    document.getElementById('add-project').addEventListener('click', newProjectModal);
 }
 
 function createHeader() {
@@ -42,7 +45,6 @@ function createSidebar() {
 
     const btn = createButtonWithId('add-project', 'Add new project');
     sidebar.appendChild(btn);
-    btn.addEventListener('click', newProjectModal);
 
     return sidebar;
 }
