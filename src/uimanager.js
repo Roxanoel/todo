@@ -231,11 +231,13 @@ function newProjectModal() {
     // Form contents creation
     appendLabelAndInput(form, 'Title: ', 'title-input', 'text', true);
     // Button
-    form.appendChild(createButtonWithId('submit-form', 'Add project'));
+    const btn = createButtonWithId('submit-form', 'Add project');
+    form.appendChild(btn);
+    btn.addEventListener('click', handleSubmitNewProject);
     // Visibility
     modalToggleHidden();
 
-    // Listeners
+
 
 }
 
@@ -251,12 +253,13 @@ function newTaskModal() {
     appendLabelAndDropdown(form, 'Priority level: ', 'priority-input')
     
     // Button
-    form.appendChild(createButtonWithId('submit-form', 'Add project'));
+    const btn = createButtonWithId('submit-form', 'Add project');
+    form.appendChild(btn);
+    btn.addEventListener('click', handleSubmitNewTask);
+
 
     // Visibility 
     modalToggleHidden();
-
-    // Listeners
 
 }
 
@@ -304,7 +307,26 @@ function createPriorityLevelDropdown(id) {
 
     return select;
 }
+
+function handleSubmitNewTask(e) {
+    e.preventDefault();
+
+    // FUNCTIONALITY
+
+    // Closes the modal
+    clearAndCloseModal();
+}
 //#endregion
+
+function handleSubmitNewProject(e) {
+    e.preventDefault();
+
+    // FUNCTIONALITY
+
+    // Closes the modal
+    clearAndCloseModal();
+}
+
 
 //#region UTIL
 
