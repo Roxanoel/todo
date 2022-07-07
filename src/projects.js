@@ -4,6 +4,14 @@ import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./st
 const maxProjects = 10;
 //#endregion
 
+//#region EVENTS
+document.addEventListener('newProjectSubmitted', handleNewProjectSubmitted);
+
+function handleNewProjectSubmitted(e) {
+    console.log(e.detail.title);
+}
+//#endregion
+
 //#region INIT
 let projects = (() => {
     // Empty array to store results
