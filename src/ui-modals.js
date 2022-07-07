@@ -7,6 +7,8 @@ const dateInputID = 'date-input';
 const priorityInputID = 'priority-input';
 //#endregion
 
+//#region CREATION
+
 function createModal() {
     const modal = document.createElement('div');
     modal.classList.add('modal', 'hidden');
@@ -21,7 +23,9 @@ function createModal() {
     modal.appendChild(modalContents);
     return modal;
 }
+//#endregion
 
+//#region SHOW/HIDE
 function modalToggleHidden(){
     const modal = document.querySelector('.modal');
     modal.classList.toggle('hidden');
@@ -35,6 +39,19 @@ function clearModalContents() {
     }
 }
 
+function clearAndCloseModal() {
+    clearModalContents();
+    modalToggleHidden();
+}
+
+function clickOutsideModalContents(e) {
+    const modalContents = document.querySelector('.modal-contents');
+    if(e.path.includes(modalContents)) return;
+    clearAndCloseModal(); // Works on its own
+}
+//#endregion
+
+//#region PROJECT CREATION MODAL
 function newProjectModal() {
     // Update heading
     document.querySelector('.modal h2').textContent = 'Create New Project';
@@ -48,11 +65,19 @@ function newProjectModal() {
     btn.addEventListener('click', handleSubmitNewProject);
     // Visibility
     modalToggleHidden();
-
-
-
 }
 
+function handleSubmitNewProject(e) {
+    e.preventDefault();
+
+    // FUNCTIONALITY
+
+    // Closes the modal
+    clearAndCloseModal();
+}
+//#endregion
+
+//#region TASK CREATION MODAL
 function newTaskModal() {
     // Update heading
     document.querySelector('.modal h2').textContent = 'Add a Task';
@@ -72,18 +97,6 @@ function newTaskModal() {
 
     // Visibility 
     modalToggleHidden();
-
-}
-
-function clearAndCloseModal() {
-    clearModalContents();
-    modalToggleHidden();
-}
-
-function clickOutsideModalContents(e) {
-    const modalContents = document.querySelector('.modal-contents');
-    if(e.path.includes(modalContents)) return;
-    clearAndCloseModal(); // Works on its own
 }
 
 function appendLabelAndDropdown(parent, labelText, id) {
@@ -93,7 +106,6 @@ function appendLabelAndDropdown(parent, labelText, id) {
     parent.appendChild(label);
 
     parent.appendChild(createPriorityLevelDropdown(id));
-
 }
 
 function createPriorityLevelDropdown(id) {
@@ -128,15 +140,7 @@ function handleSubmitNewTask(e) {
     // Closes the modal
     clearAndCloseModal();
 }
-
-function handleSubmitNewProject(e) {
-    e.preventDefault();
-
-    // FUNCTIONALITY
-
-    // Closes the modal
-    clearAndCloseModal();
-}
+//#endregion
 
 export {
     createModal,
