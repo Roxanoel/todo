@@ -78,7 +78,7 @@ function handleSubmitNewProject(e) {
     })
 
     document.dispatchEvent(event);
-    
+
     // Closes the modal
     clearAndCloseModal();
 }
@@ -143,7 +143,16 @@ function handleSubmitNewTask(e) {
     e.preventDefault();
 
     // FUNCTIONALITY
-    
+    const event = new CustomEvent('newTaskSubmitted', {
+        detail: {
+            title: document.getElementById(titleInputID).value,
+            description: document.getElementById(descrInputID).value,
+            dueDate: document.getElementById(dateInputID).value,
+            priorityLevel: document.getElementById(priorityInputID).value
+        }
+    })
+
+    document.dispatchEvent(event);
 
 
     // Closes the modal

@@ -6,9 +6,14 @@ const maxProjects = 10;
 
 //#region EVENTS
 document.addEventListener('newProjectSubmitted', handleNewProjectSubmitted);
+document.addEventListener('newTaskSubmitted', handleNewTaskSubmitted)
 
 function handleNewProjectSubmitted(e) {
     console.log(e.detail.title);
+}
+
+function handleNewTaskSubmitted(e) {
+    console.log(e.detail);
 }
 //#endregion
 
