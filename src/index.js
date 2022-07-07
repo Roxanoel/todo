@@ -8,8 +8,11 @@ import _ from "./storage.js";
 
 generateGeneralLayout();
 
-const testProject = tryAddProject('Project 1');
+const testProject = tryAddProject('Project 2', '');
+const newTask = createTodoItem('Test task', 'defbhebf', 'fbfgefbeeh', 'low-priority');
 
+testProject.addTodoItem(newTask);
+localStorage.setItem(testProject.title, testProject);
 
 updateProjectsList(getProjects());
 console.log(getProjects());

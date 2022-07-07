@@ -1,4 +1,4 @@
-import _, { addToStorage, removeFromStorage, retrieveAllFromStorage, storageWasPopulated } from "./storage.js";
+import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./storage.js";
 
 //#region STATE
 const maxProjects = 10;
@@ -9,14 +9,12 @@ let projects = (() => {
     // Empty array to store results
     const projs = [];
     // Retrieving JSON data
-    if (storageWasPopulated) {
-        const data = retrieveAllFromStorage();
-        // Reassembling full objects from JSON data
-        data.forEach(datum => {
-            const obj = _reconstituteProject(datum);
-            projs.push(obj);
-        })
-    }
+    const data = retrieveAllFromStorage();
+    // Reassembling full objects from JSON data
+    data.forEach(datum => {
+        const obj = _reconstituteProject(datum);
+        projs.push(obj);
+    })
     return projs;
 })();
 
@@ -89,16 +87,17 @@ function _generateDefaultProject() {
 }
 
 function tryAddProject(title, isDefault) {
-    if (checkForDuplicateTitle(title)) {
+    /*if (checkForDuplicateTitle(title)) {
         console.log("Unable to add, there is already a project with that title.");
         return;
     }
     
     if (projects.length >= maxProjects) {
         console.log(`Unable to add project, maximum = ${maxProjects}`);
-    }
+        return;
+    }*/
 
-    _createAndAddProject(title, isDefault);
+    return _createAndAddProject(title, isDefault);
 }
 
 function _createAndAddProject(title, isDefault) {
