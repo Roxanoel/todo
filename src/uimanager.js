@@ -21,6 +21,7 @@ function generateGeneralLayout() {
     // Listeners
     document.getElementById('add-project').addEventListener('click', newProjectModal);
     document.getElementById('add-task').addEventListener('click', newTaskModal);
+    document.querySelector('.modal').addEventListener('click', clickOutsideModalContents);
 }
 
 function createHeader() {
@@ -233,6 +234,9 @@ function newProjectModal() {
     form.appendChild(createButtonWithId('submit-form', 'Add project'));
     // Visibility
     modalToggleHidden();
+
+    // Listeners
+
 }
 
 function newTaskModal() {
@@ -251,11 +255,20 @@ function newTaskModal() {
 
     // Visibility 
     modalToggleHidden();
+
+    // Listeners
+
 }
 
 function clearAndCloseModal() {
     clearModalContents();
     modalToggleHidden();
+}
+
+function clickOutsideModalContents(e) {
+    const modalContents = document.querySelector('.modal-contents');
+    if(e.path.includes(modalContents)) return;
+    clearAndCloseModal(); // Works on its own
 }
 
 function appendLabelAndDropdown(parent, labelText, id) {
