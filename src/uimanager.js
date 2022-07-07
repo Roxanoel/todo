@@ -5,7 +5,6 @@ import { createModal, newProjectModal, newTaskModal, clickOutsideModalContents }
 
 //#region References 
 const body = document.querySelector('body');
-
 //#endregion
 
 //#region Parameters
@@ -29,10 +28,6 @@ function generateGeneralLayout() {
     document.getElementById('add-task').addEventListener('click', newTaskModal);
     modal.addEventListener('click', clickOutsideModalContents);
 }
-
-//#endregion
-
-
 //#endregion
 
 //#region Exports
