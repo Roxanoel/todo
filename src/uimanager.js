@@ -204,6 +204,20 @@ function createModal() {
     modal.appendChild(modalContents);
     return modal;
 }
+
+function modalToggleHidden(){
+    const modal = document.querySelector('.modal');
+    modal.classList.toggle('hidden');
+}
+
+function newProjectModal() {
+    // Get a hold of the form
+    const form = querySelector('.modal form');
+    // Form contents creation
+    
+
+    modalToggleHidden();
+}
 //#endregion
 
 //#region UTIL
@@ -213,6 +227,21 @@ function createButtonWithId(id, textContent) {
     btn.setAttribute('id', id);
     btn.textContent = textContent;
     return btn;
+}
+
+function appendLabelAndInput(parent, labelText, id, inputType, isRequired) {
+    const label = document.createElement('label');
+    label.setAttribute('for', id);
+    label.textContent = labelText
+
+    const input = document.createElement('input');
+    input.setAttribute('id', id);
+    input.setAttribute('type', inputType);
+    input.setAttribute('name', id);
+    if (isRequired) input.required = true;
+
+    parent.appendChild(label);
+    parent.appendChild(input);
 }
 
 //#endregion
