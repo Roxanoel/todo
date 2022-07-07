@@ -17,6 +17,7 @@ function generateGeneralLayout() {
     body.appendChild(createMain());
     // Append modal 
     body.appendChild(createModal());
+    newProjectModal();
 }
 
 function createHeader() {
@@ -192,7 +193,7 @@ function createCardBottom(task) {
 //#region MODALS 
 function createModal() {
     const modal = document.createElement('div');
-    modal.classList.add('modal', 'hidden');
+    modal.classList.add('modal', /*'hidden'*/);
 
     const modalContents = document.createElement('div');
     modalContents.classList.add('modal-contents');
@@ -211,12 +212,15 @@ function modalToggleHidden(){
 }
 
 function newProjectModal() {
+    document.querySelector('.modal h2').textContent = 'Create New Project';
     // Get a hold of the form
-    const form = querySelector('.modal form');
+    const form = document.querySelector('.modal form');
     // Form contents creation
-    
+    appendLabelAndInput(form, 'Title: ', 'title-input', 'text', true);
 
-    modalToggleHidden();
+    form.appendChild(createButtonWithId('submit-form', 'Add project'));
+
+    //modalToggleHidden();
 }
 //#endregion
 
