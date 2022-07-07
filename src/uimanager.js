@@ -17,7 +17,7 @@ function generateGeneralLayout() {
     body.appendChild(createMain());
     // Append modal 
     body.appendChild(createModal());
-    newProjectModal();
+    newTaskModal();
 }
 
 function createHeader() {
@@ -212,6 +212,7 @@ function modalToggleHidden(){
 }
 
 function newProjectModal() {
+    // Update heading
     document.querySelector('.modal h2').textContent = 'Create New Project';
     // Get a hold of the form
     const form = document.querySelector('.modal form');
@@ -221,6 +222,55 @@ function newProjectModal() {
     form.appendChild(createButtonWithId('submit-form', 'Add project'));
 
     //modalToggleHidden();
+}
+
+function newTaskModal() {
+    // Update heading
+    document.querySelector('.modal h2').textContent = 'Add a Task';
+    // Get a hold of the form
+    const form = document.querySelector('.modal form');
+    // Form contents creation - fields
+    appendLabelAndInput(form, 'Title: ', 'title-input', 'text', true);
+    appendLabelAndTextarea(form, 'Description: ', 'descr-input', false);
+    appendLabelAndInput(form, 'Date: ', 'date-input', 'text', false);
+    appendLabelAndDropdown(form, 'Priority level: ', 'priority-input')
+    
+    // Button
+    form.appendChild(createButtonWithId('submit-form', 'Add project'));
+}
+
+function appendLabelAndDropdown(parent, labelText, id) {
+    const label = document.createElement('label');
+    label.setAttribute('for', id);
+    label.textContent = labelText;
+    parent.appendChild(label);
+
+    parent.appendChild(createPriorityLevelDropdown(id));
+
+}
+
+function createPriorityLevelDropdown(id) {
+    const select = document.createElement('select');
+    select.setAttribute('name', id);
+    select.setAttribute('id', id);
+
+    const option1 = document.createElement('option');
+    option1.setAttribute('value', 'high-priority');
+    option1.textContent = 'High';
+
+    const option2 = document.createElement('option');
+    option2.setAttribute('value', 'mid-priority');
+    option2.textContent = 'Medium';
+
+    const option3 = document.createElement('option');
+    option3.setAttribute('value', 'low-priority');
+    option3.textContent = 'Low';
+
+    select.appendChild(option1);
+    select.appendChild(option2);
+    select.appendChild(option3);
+
+    return select;
 }
 //#endregion
 
@@ -247,6 +297,21 @@ function appendLabelAndInput(parent, labelText, id, inputType, isRequired) {
     parent.appendChild(label);
     parent.appendChild(input);
 }
+
+function appendLabelAndTextarea(parent, labelText, id, isRequired) {
+    const label = document.createElement('label');
+    label.setAttribute('for', id);
+    label.textContent = labelText;
+
+    const input = document.createElement('textarea');
+    input.setAttribute('id', id);
+    input.setAttribute('name', id);
+    if (isRequired) input.required = true;
+
+    parent.appendChild(label);
+    parent.appendChild(input);
+}
+
 
 //#endregion
 
