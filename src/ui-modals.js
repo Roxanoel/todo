@@ -1,5 +1,12 @@
 import { appendLabelAndInput, appendLabelAndTextarea, createButtonWithId } from "./ui-utils";
 
+//#region STATE
+const titleInputID = 'title-input';
+const descrInputID = 'descr-input';
+const dateInputID = 'date-input';
+const priorityInputID = 'priority-input';
+//#endregion
+
 function createModal() {
     const modal = document.createElement('div');
     modal.classList.add('modal', 'hidden');
@@ -34,7 +41,7 @@ function newProjectModal() {
     // Get a hold of the form
     const form = document.querySelector('.modal form');
     // Form contents creation
-    appendLabelAndInput(form, 'Title: ', 'title-input', 'text', true);
+    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true);
     // Button
     const btn = createButtonWithId('submit-form', 'Add project');
     form.appendChild(btn);
@@ -52,10 +59,10 @@ function newTaskModal() {
     // Get a hold of the form
     const form = document.querySelector('.modal form');
     // Form contents creation - fields
-    appendLabelAndInput(form, 'Title: ', 'title-input', 'text', true);
-    appendLabelAndTextarea(form, 'Description: ', 'descr-input', false);
-    appendLabelAndInput(form, 'Date: ', 'date-input', 'text', false);
-    appendLabelAndDropdown(form, 'Priority level: ', 'priority-input')
+    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true);
+    appendLabelAndTextarea(form, 'Description: ', descrInputID, false);
+    appendLabelAndInput(form, 'Due date: ', dateInputID, 'text', false);
+    appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
     
     // Button
     const btn = createButtonWithId('submit-form', 'Add project');
