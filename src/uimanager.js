@@ -253,6 +253,11 @@ function newTaskModal() {
     modalToggleHidden();
 }
 
+function clearAndCloseModal() {
+    clearModalContents();
+    modalToggleHidden();
+}
+
 function appendLabelAndDropdown(parent, labelText, id) {
     const label = document.createElement('label');
     label.setAttribute('for', id);
