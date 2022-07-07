@@ -15,6 +15,8 @@ function generateGeneralLayout() {
     body.appendChild(createSidebar());
     // Append main
     body.appendChild(createMain());
+    // Append modal 
+    body.appendChild(createModal());
 }
 
 function createHeader() {
@@ -64,6 +66,7 @@ function createMain() {
 
     return main;
 }
+//#endregion
 
 //#region Sidebar contents
 function updateProjectsList(projectsArray) {
@@ -184,6 +187,23 @@ function createCardBottom(task) {
     return expanded;
 }
 
+//#endregion
+
+//#region MODALS 
+function createModal() {
+    const modal = document.createElement('div');
+    modal.classList.add('modal', 'hidden');
+
+    const modalContents = document.createElement('div');
+    modalContents.classList.add('modal-contents');
+    const heading = document.createElement('h2');
+    const form = document.createElement('form');
+    modalContents.appendChild(heading);
+    modalContents.appendChild(form);
+
+    modal.appendChild(modalContents);
+    return modal;
+}
 //#endregion
 
 //#region UTIL
