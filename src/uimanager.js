@@ -1,3 +1,4 @@
+import { createHeader } from "./ui-header";
 import { createSidebar, updateProjectsList } from "./ui-sidebar";
 import { createMain } from "./ui-main";
 import { createModal, newProjectModal, newTaskModal, clickOutsideModalContents } from "./ui-modals";
@@ -14,7 +15,7 @@ const appName = 'My Planner';
 //#region General Layout generation
 function generateGeneralLayout() {
     // Append header
-    body.appendChild(createHeader());
+    body.appendChild(createHeader(appName));
     // Append sidebar
     body.appendChild(createSidebar());
     // Append main
@@ -28,15 +29,6 @@ function generateGeneralLayout() {
     document.getElementById('add-task').addEventListener('click', newTaskModal);
     modal.addEventListener('click', clickOutsideModalContents);
 }
-
-function createHeader() {
-    const header = document.createElement('header');
-    const appTitle = document.createElement('h1');
-    appTitle.textContent = appName;
-    header.appendChild(appTitle);
-    return header;
-}
-
 
 //#endregion
 
