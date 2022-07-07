@@ -1,3 +1,5 @@
+import { appendLabelAndInput, appendLabelAndTextarea, createButtonWithId } from "./ui-utils";
+
 function createModal() {
     const modal = document.createElement('div');
     modal.classList.add('modal', 'hidden');
