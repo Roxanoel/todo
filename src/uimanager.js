@@ -210,6 +210,14 @@ function modalToggleHidden(){
     modal.classList.toggle('hidden');
 }
 
+function clearModalContents() {
+    const form = document.querySelector('.modal form');
+
+    while (form.lastChild) {
+        form.removeChild(form.lastChild);
+    }
+}
+
 function newProjectModal() {
     // Update heading
     document.querySelector('.modal h2').textContent = 'Create New Project';
