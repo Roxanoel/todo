@@ -50,11 +50,7 @@ function handleNewTaskSubmitted(e) {
     const task = createTodoItem(e.detail.title, e.detail.description, e.detail.dueDate, e.detail.priority);
     currentProject.addTodoItem(task);
     
-    const tasksUpdated = new CustomEvent('tasksUpdated', {
-        detail: currentProject.todoList
-    })
-
-    document.dispatchEvent(tasksUpdated);
+    dispatchTasksUpdatedEvent();
 }
 
 function handleActiveProjectUpdated(e) {
@@ -62,6 +58,11 @@ function handleActiveProjectUpdated(e) {
     currentProject = projects[index];
     console.log(currentProject);
 
+    dispatchCurrentProjectUpdatedEvent();
+    dispatchTasksUpdatedEvent();
+}
+
+function dispatchCurrentProjectUpdatedEvent() {
     const currentProjectUpdated = new CustomEvent('currentProjectUpdated', {
         detail: {
             title: currentProject.title,
@@ -70,6 +71,14 @@ function handleActiveProjectUpdated(e) {
     })
 
     document.dispatchEvent(currentProjectUpdated);
+}
+
+function dispatchTasksUpdatedEvent() {
+    const tasksUpdated = new CustomEvent('tasksUpdated', {
+        detail: currentProject.todoList
+    })
+
+    document.dispatchEvent(tasksUpdated);
 }
 //#endregion
 

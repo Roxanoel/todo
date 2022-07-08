@@ -28,7 +28,7 @@ function handleTasksUpdated(e) {
 }
 //#endregion
 
- //#region
+//#region
 function createMain() {
     const main = document.createElement('main');
     // heading area
