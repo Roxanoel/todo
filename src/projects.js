@@ -1,4 +1,5 @@
 import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./storage.js";
+import { createTodoItem } from "./todo.js";
 
 //#region STATE
 const maxProjects = 10;
@@ -46,7 +47,9 @@ function handleNewProjectSubmitted(e) {
 }
 
 function handleNewTaskSubmitted(e) {
-    console.log(e.detail);
+    const task = createTodoItem(e.detail.title, e.detail.description, e.detail.dueDate, e.detail.priority);
+    currentProject.addTodoItem(task);
+    console.log(currentProject);
 }
 
 function handleActiveProjectUpdated(e) {
