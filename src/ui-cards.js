@@ -1,42 +1,25 @@
 import { createButtonWithId, createDivWithClass } from "./ui-utils";
 
-//#region STATE
-let cards = [];
-//#endregion
-
-//#region FACTORY 
-function createCardContents(title, isDone, descr, priority, dueDate) {
-    return {
-        title: title,
-        isDone: isDone,
-        description: descr,
-        priorityLevel: priority,
-        dueDate: dueDate,
-        isExpanded: false
-    }
-}
-//#endregion
-
 //#region CARD CREATION 
-function createCard(title, isDone, descr, priority, dueDate) {
+function createCard(taskData) {
     const contents = createCardContents(title, isDone, descr, priority, dueDate);
 
-    return generateElementsForCard(contents);    
+    return generateElementsForCard(taskData);    
 }
 
-function generateElementsForCard(contents) {
+function generateElementsForCard(taskData) {
     const card = createDivWithClass('card');
 
-    card.appendChild(generateCollapsedContents(contents));
+    card.appendChild(generateCollapsedContents(taskData));
 
-    card.appendChild(generateExpandedContents(contents));
+    card.appendChild(generateExpandedContents(taskData));
 
     return card;
 }
 
-function generateCollapsedContents(contents) {
+function generateCollapsedContents(taskData) {
     const collapsed = createDivWithClass('collapsed');
-    collapsed.appendChild(generateTitleBar(contents.title, contents.isDone));
+    collapsed.appendChild(generateTitleBar(taskData.title, taskData.done));
 
     return collapsed;
 }
@@ -56,12 +39,12 @@ function generateTitleBar(title, isDone) {
     return titleContainer;
 }
 
-function generateExpandedContents(contents) {
+function generateExpandedContents(taskData) {
     const expanded = createDivWithClass('expanded');
     expanded.classList.add('hidden');
 
     const descr = createDivWithClass('descr');
-    descr.textContent = contents.description;
+    descr.textContent = taskData.description;
     expanded.appendChild(descr);
 
     const btnContainer = createDivWithClass('btn-container');
