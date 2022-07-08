@@ -50,9 +50,11 @@ function setActiveProject(e) {
     const project = e.currentTarget;
     const thisIndex = project.dataset.index;
 
-    // figure out styling later. Issues that will arise: 
-    // - Clearing style of previously selected item
-    // - Ensuring the styling remains when a new project is added to the list (unless I circumvent this by just automatically setting new project to active)
+    // For styling; ensure previous styling is removed.
+    const projectsArray = document.querySelectorAll('.projects-list li');
+    projectsArray.forEach(item => item.classList.remove('selected'));
+    // Apply style to clicked element
+    project.classList.add('selected');
 
     // Event dispatch
     const event = new CustomEvent('activeProjectUpdated', {
