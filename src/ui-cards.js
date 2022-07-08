@@ -1,11 +1,7 @@
 import { createButtonWithId, createDivWithClass } from "./ui-utils";
 
 //#region CARD CREATION 
-function createCard(taskData) {
-    return generateElementsForCard(taskData);    
-}
-
-function generateElementsForCard(taskData) {
+function createCard(taskData) {    
     const card = createDivWithClass('card');
 
     card.appendChild(generateCollapsedContents(taskData));
