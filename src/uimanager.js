@@ -1,5 +1,5 @@
 import { createHeader } from "./ui-header";
-import { createSidebar, updateProjectsList } from "./ui-sidebar";
+import { createSidebar, updateProjectsList, initializeSelectedProject } from "./ui-sidebar";
 import { createMain } from "./ui-main";
 import { createModal, newProjectModal, newTaskModal, clickOutsideModalContents } from "./ui-modals";
 
@@ -33,6 +33,7 @@ function generateGeneralLayout() {
 //#region Exports
 export {
     generateGeneralLayout,
-    updateProjectsList
+    updateProjectsList,
+    initializeSelectedProject
 }
 //#endregion

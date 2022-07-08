@@ -24,6 +24,13 @@ function createSidebar() {
 }
 //#endregion
 
+//#region INIT 
+function initializeSelectedProject() {
+    applySelectedStyle(document.querySelector('.projects-list :first-child'));
+    dispatchActiveProjectUpdated(0);
+}
+//#endregion
+
 //#region Updating projects list
 function updateProjectsList(projectsArray) {
     const projectsList = document.querySelector('.projects-list');
@@ -50,16 +57,24 @@ function setActiveProject(e) {
     const project = e.currentTarget;
     const thisIndex = project.dataset.index;
 
-    // For styling; ensure previous styling is removed.
-    const projectsArray = document.querySelectorAll('.projects-list li');
-    projectsArray.forEach(item => item.classList.remove('selected'));
-    // Apply style to clicked element
-    project.classList.add('selected');
+    applySelectedStyle(project);
 
+    dispatchActiveProjectUpdated(thisIndex);
+}
+
+function applySelectedStyle(project) {
+     // For styling; ensure previous styling is removed.
+     const projectsArray = document.querySelectorAll('.projects-list li');
+     projectsArray.forEach(item => item.classList.remove('selected'));
+     // Apply style to clicked element
+     project.classList.add('selected');
+}
+
+function dispatchActiveProjectUpdated(index) {
     // Event dispatch
     const event = new CustomEvent('activeProjectUpdated', {
         detail: {
-            index: +thisIndex
+            index: +index
         }
     });
     document.dispatchEvent(event);
@@ -70,5 +85,6 @@ function setActiveProject(e) {
 export {
     createSidebar,
     updateProjectsList,
+    initializeSelectedProject
 };
 //#endregion
