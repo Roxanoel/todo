@@ -4,8 +4,11 @@ import { createButtonWithId } from "./ui-utils";
 document.addEventListener('currentProjectUpdated', handleCurrentProjectUpdated)
 
 function handleCurrentProjectUpdated(e) {
-    const heading = document.querySelector('.heading-area h2');
+    const heading = document.querySelector('.heading h2');
     heading.textContent = e.detail.title;
+
+    const tasksLeft = document.querySelector('.heading .tasks-left');
+    tasksLeft.textContent = `${e.detail.tasks.length} tasks left`;
 }
 //#endregion
 
