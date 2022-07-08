@@ -1,5 +1,14 @@
 import { createButtonWithId } from "./ui-utils";
 
+//#region EVENTS
+document.addEventListener('currentProjectUpdated', handleCurrentProjectUpdated)
+
+function handleCurrentProjectUpdated(e) {
+    const heading = document.querySelector('.heading-area h2');
+    heading.textContent = e.detail.title;
+}
+//#endregion
+
 function createMain() {
     const main = document.createElement('main');
     // heading area

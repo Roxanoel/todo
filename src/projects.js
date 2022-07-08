@@ -21,6 +21,9 @@ function initializeProjectsList(){
         projects.push(obj);
         });
     }
+
+    // Set first project in list as current 
+    currentProject = projects[0];
     
     document.dispatchEvent(projectsUpdatedEvent);
 };
@@ -30,6 +33,7 @@ function initializeProjectsList(){
 const projectsUpdatedEvent = new CustomEvent('projectsUpdated', {
     detail: projects
 })
+
 //#endregion
 
 //#region EVENTS - LISTENING
@@ -49,6 +53,15 @@ function handleActiveProjectUpdated(e) {
     const index = e.detail.index;
     currentProject = projects[index];
     console.log(currentProject);
+
+    const currentProjectUpdated = new CustomEvent('currentProjectUpdated', {
+        detail: {
+            title: currentProject.title,
+            tasks: currentProject.todoList
+        }
+    })
+
+    document.dispatchEvent(currentProjectUpdated);
 }
 //#endregion
 
