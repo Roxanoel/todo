@@ -33,7 +33,8 @@ const projectsUpdatedEvent = new CustomEvent('projectsUpdated', {
 
 //#region EVENTS - LISTENING
 document.addEventListener('newProjectSubmitted', handleNewProjectSubmitted);
-document.addEventListener('newTaskSubmitted', handleNewTaskSubmitted)
+document.addEventListener('newTaskSubmitted', handleNewTaskSubmitted);
+document.addEventListener('activeProjectUpdated', handleActiveProjectUpdated);
 
 function handleNewProjectSubmitted(e) {
     tryAddProject(e.detail.title, false);
@@ -41,6 +42,11 @@ function handleNewProjectSubmitted(e) {
 
 function handleNewTaskSubmitted(e) {
     console.log(e.detail);
+}
+
+function handleActiveProjectUpdated(e) {
+    const index = e.detail.index;
+    console.log(projects[index]);
 }
 //#endregion
 
