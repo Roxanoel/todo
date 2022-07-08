@@ -28,11 +28,13 @@ function updateProjectsList(projectsArray) {
     
     clearProjectsList(projectsList);
     
-    projectsArray.forEach(project => {
+    for (let i = 0; i < projectsArray.length; i++) {
         const entry = document.createElement('li');
-        entry.textContent = project.title;
+        entry.textContent = projectsArray[i].title;
+        entry.setAttribute('data-index', i);
+
         projectsList.appendChild(entry);
-    })
+    }
 }
 
 function clearProjectsList(projectsList) {
