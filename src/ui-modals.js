@@ -125,7 +125,7 @@ function createPriorityLevelDropdown(id) {
     option1.textContent = 'High';
 
     const option2 = document.createElement('option');
-    option2.setAttribute('value', 'mid-priority');
+    option2.setAttribute('value', 'med-priority');
     option2.textContent = 'Medium';
 
     const option3 = document.createElement('option');
@@ -148,7 +148,7 @@ function handleSubmitNewTask(e) {
             title: document.getElementById(titleInputID).value,
             description: document.getElementById(descrInputID).value,
             dueDate: document.getElementById(dateInputID).value,
-            priorityLevel: document.getElementById(priorityInputID).value
+            priority: document.getElementById(priorityInputID).value
         }
     })
 

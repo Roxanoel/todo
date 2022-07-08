@@ -2,8 +2,6 @@ import { createButtonWithId, createDivWithClass } from "./ui-utils";
 
 //#region CARD CREATION 
 function createCard(taskData) {
-    const contents = createCardContents(title, isDone, descr, priority, dueDate);
-
     return generateElementsForCard(taskData);    
 }
 

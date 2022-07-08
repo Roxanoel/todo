@@ -3,6 +3,7 @@ import { createCard } from './ui-cards';
 
 //#region EVENTS
 document.addEventListener('currentProjectUpdated', handleCurrentProjectUpdated)
+document.addEventListener('tasksUpdated', handleTasksUpdated);
 
 function handleCurrentProjectUpdated(e) {
     const heading = document.querySelector('.heading h2');
@@ -11,8 +12,23 @@ function handleCurrentProjectUpdated(e) {
     const tasksLeft = document.querySelector('.heading .tasks-left');
     tasksLeft.textContent = `${e.detail.tasks.length} tasks left`;
 }
+
+function handleTasksUpdated(e) {
+    clearAllTaskCards();
+
+    const tasksArray = e.detail;
+
+    for (let i = 0; i < tasksArray.length; i++) {
+        const card = createCard(tasksArray[i]);
+        card.setAttribute('data-index', i);
+        // Find the right box to append card to (depending on priority level)
+        const parentContainer = findContainer(tasksArray[i].priority);
+        parentContainer.appendChild(card);
+    }
+}
 //#endregion
 
+ //#region
 function createMain() {
     const main = document.createElement('main');
     // heading area
@@ -72,6 +88,33 @@ function createTaskBox(priorityClass) {
     box.appendChild(document.createElement('h3'));
     return box;
 }
+//#endregion
+
+//#region CARDS
+
+function clearAllTaskCards() {
+    const containers = document.querySelectorAll('.task-box');
+    containers.forEach(container => {
+        while (container.lastChild) {
+            container.removeChild(container.lastChild);
+        }
+    })
+}
+
+function findContainer(priority) {
+    switch (priority) {
+        case 'high-priority':
+            return document.querySelector('.task-box.high-priority');
+        case 'med-priority':
+            return document.querySelector('.task-box.med-priority');
+        case 'low-priority':
+            return document.querySelector('.task-box.low-priority');
+        default: 
+            return document.querySelector('.task-box.med-priority');
+    }
+}
+
+//#endregion
 
 export {
     createMain
