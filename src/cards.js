@@ -1,4 +1,4 @@
-import { createButtonWithId } from "./ui-utils";
+import { createButtonWithId, createDivWithClass } from "./ui-utils";
 
 //#region FACTORY 
 function createCardContents(title, isDone, descr, priority, dueDate, isExpanded) {
