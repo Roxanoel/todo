@@ -3,6 +3,7 @@ import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./st
 //#region STATE
 const maxProjects = 10;
 let projects = [];
+let currentProject;
 //#endregion
 
 //#region INIT
@@ -46,7 +47,8 @@ function handleNewTaskSubmitted(e) {
 
 function handleActiveProjectUpdated(e) {
     const index = e.detail.index;
-    console.log(projects[index]);
+    currentProject = projects[index];
+    console.log(currentProject);
 }
 //#endregion
 
