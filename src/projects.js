@@ -36,7 +36,7 @@ document.addEventListener('newProjectSubmitted', handleNewProjectSubmitted);
 document.addEventListener('newTaskSubmitted', handleNewTaskSubmitted)
 
 function handleNewProjectSubmitted(e) {
-    console.log(e.detail.title);
+    tryAddProject(e.detail.title, false);
 }
 
 function handleNewTaskSubmitted(e) {
@@ -91,6 +91,8 @@ function _addProject(project) {
     addToStorage(project.title, projectData);
     // Add to local array
     projects.push(project);
+    // Dispatch event to notify listeners that project list was changed 
+    document.dispatchEvent(projectsUpdatedEvent);
 }
 
 function _deleteProject(index) {
@@ -114,7 +116,7 @@ function _generateDefaultProject() {
 }
 
 function tryAddProject(title, isDefault) {
-    /*if (checkForDuplicateTitle(title)) {
+    if (checkForDuplicateTitle(title)) {
         console.log("Unable to add, there is already a project with that title.");
         return;
     }
@@ -122,7 +124,7 @@ function tryAddProject(title, isDefault) {
     if (projects.length >= maxProjects) {
         console.log(`Unable to add project, maximum = ${maxProjects}`);
         return;
-    }*/
+    }
 
     return _createAndAddProject(title, isDefault);
 }
