@@ -270,8 +270,10 @@ main {
 }
 
 .card .collapsed {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
 }
 
 .title-container {
@@ -281,6 +283,17 @@ main {
 
 .task-title {
     color: var(--text-dark);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.collapsed .date {
+    grid-column: 1 / -1;
+
+    font-style: italic;
+    font-weight: 500;
+
+    color: var(--background-mid);
 }
 
 .tick {
