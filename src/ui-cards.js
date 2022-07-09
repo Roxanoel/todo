@@ -15,6 +15,10 @@ function generateCollapsedContents(taskData) {
     const collapsed = createDivWithClass('collapsed');
     collapsed.appendChild(generateTitleBar(taskData.title, taskData.done));
 
+    const arrow = createDivWithClass('arrow');
+    arrow.addEventListener('click', toggleCardExpansion)
+    collapsed.appendChild(arrow);
+
     return collapsed;
 }
 
@@ -47,7 +51,14 @@ function generateExpandedContents(taskData) {
 
     return expanded;
 }
+//#endregion
 
+//#region EXPANDING/COLLAPSING 
+function toggleCardExpansion(e) {
+    e.currentTarget.classList.toggle('up');
+
+    
+}
 //#endregion
 
 //#region EXPORTS
