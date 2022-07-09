@@ -23,6 +23,10 @@ function generateCollapsedContents(taskData, index) {
     arrow.addEventListener('click', handleArrowClicked);
     collapsed.appendChild(arrow);
 
+    const date = createDivWithClass('date');
+    date.textContent = `Due: ${taskData.dueDate}`;
+    collapsed.appendChild(date);
+
     return collapsed;
 }
 
