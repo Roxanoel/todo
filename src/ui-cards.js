@@ -51,6 +51,7 @@ function generateExpandedContents(taskData, index) {
     expanded.appendChild(descr);
 
     const btnContainer = createDivWithClass('btn-container');
+    btnContainer.appendChild(createButtonWithId('edit-task', 'Edit'));
     btnContainer.appendChild(createButtonWithId('delete-task', 'Delete'));
     expanded.appendChild(btnContainer);
 
