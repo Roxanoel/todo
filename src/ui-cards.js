@@ -1,22 +1,26 @@
+import { compareDesc } from "date-fns";
 import { createButtonWithId, createDivWithClass } from "./ui-utils";
 
 //#region CARD CREATION 
-function createCard(taskData) {    
+function createCard(taskData, index) {    
     const card = createDivWithClass('card');
 
-    card.appendChild(generateCollapsedContents(taskData));
+    card.appendChild(generateCollapsedContents(taskData, index));
 
-    card.appendChild(generateExpandedContents(taskData));
+    card.appendChild(generateExpandedContents(taskData, index));
+
+    card.setAttribute('data-index', index);
 
     return card;
 }
 
-function generateCollapsedContents(taskData) {
+function generateCollapsedContents(taskData, index) {
     const collapsed = createDivWithClass('collapsed');
     collapsed.appendChild(generateTitleBar(taskData.title, taskData.done));
 
     const arrow = createDivWithClass('arrow');
-    arrow.addEventListener('click', toggleCardExpansion)
+    arrow.setAttribute('data-index', index);
+    arrow.addEventListener('click', handleArrowClicked);
     collapsed.appendChild(arrow);
 
     return collapsed;
@@ -37,9 +41,10 @@ function generateTitleBar(title, isDone) {
     return titleContainer;
 }
 
-function generateExpandedContents(taskData) {
+function generateExpandedContents(taskData, index) {
     const expanded = createDivWithClass('expanded');
     expanded.classList.add('hidden');
+    expanded.setAttribute('data-index', index);
 
     const descr = createDivWithClass('descr');
     descr.textContent = taskData.description;
@@ -54,10 +59,19 @@ function generateExpandedContents(taskData) {
 //#endregion
 
 //#region EXPANDING/COLLAPSING 
+function handleArrowClicked(e) {
+    toggleArrowDirection(e);
+    toggleCardExpansion(e);
+}
 function toggleCardExpansion(e) {
-    e.currentTarget.classList.toggle('up');
+    const index = e.currentTarget.dataset.index;
+    const expanded = document.querySelector(`.expanded[data-index="${index}"]`);
 
-    
+    expanded.classList.toggle('hidden');
+}
+
+function toggleArrowDirection(e) {
+    e.currentTarget.classList.toggle('up');
 }
 //#endregion
 

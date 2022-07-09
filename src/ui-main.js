@@ -19,8 +19,7 @@ function handleTasksUpdated(e) {
     const tasksArray = e.detail;
 
     for (let i = 0; i < tasksArray.length; i++) {
-        const card = createCard(tasksArray[i]);
-        card.setAttribute('data-index', i);
+        const card = createCard(tasksArray[i], i);
         // Find the right box to append card to (depending on priority level)
         const parentContainer = findContainer(tasksArray[i].priority);
         parentContainer.appendChild(card);
