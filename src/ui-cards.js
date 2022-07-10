@@ -56,7 +56,7 @@ function generateExpandedContents(taskData, index) {
 
     const btnContainer = createDivWithClass('btn-container');
     btnContainer.appendChild(createEditButton(index));
-    btnContainer.appendChild(createButtonWithId('delete-task', 'Delete'));
+    btnContainer.appendChild(createDeleteButton(index));
     expanded.appendChild(btnContainer);
 
     return expanded;
@@ -66,6 +66,13 @@ function createEditButton(index) {
     const btn = createButtonWithId('edit-task', 'Edit');
     btn.setAttribute('data-index', index);
     btn.addEventListener('click', handleEditTaskClicked);
+    return btn;
+}
+
+function createDeleteButton(index) {
+    const btn = createButtonWithId('delete-task', 'Delete');
+    btn.setAttribute('data-index', index);
+    btn.addEventListener('click', handleDeleteTaskClicked);
     return btn;
 }
 //#endregion
@@ -90,6 +97,11 @@ function toggleArrowDirection(e) {
 //#region EDITING/DELETING
 function handleEditTaskClicked(e) {
     console.log('Edit button clicked.')
+    console.log(e.currentTarget.dataset.index);
+}
+
+function handleDeleteTaskClicked(e) {
+    console.log('Delete button clicked.')
     console.log(e.currentTarget.dataset.index);
 }
 //#endregion
