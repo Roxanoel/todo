@@ -55,11 +55,18 @@ function generateExpandedContents(taskData, index) {
     expanded.appendChild(descr);
 
     const btnContainer = createDivWithClass('btn-container');
-    btnContainer.appendChild(createButtonWithId('edit-task', 'Edit'));
+    btnContainer.appendChild(createEditButton(index));
     btnContainer.appendChild(createButtonWithId('delete-task', 'Delete'));
     expanded.appendChild(btnContainer);
 
     return expanded;
+}
+
+function createEditButton(index) {
+    const btn = createButtonWithId('edit-task', 'Edit');
+    btn.setAttribute('data-index', index);
+    btn.addEventListener('click', handleEditTaskClicked);
+    return btn;
 }
 //#endregion
 
@@ -77,6 +84,13 @@ function toggleCardExpansion(e) {
 
 function toggleArrowDirection(e) {
     e.currentTarget.classList.toggle('up');
+}
+//#endregion
+
+//#region EDITING/DELETING
+function handleEditTaskClicked(e) {
+    console.log('Edit button clicked.')
+    console.log(e.currentTarget.dataset.index);
 }
 //#endregion
 
