@@ -35,6 +35,7 @@ function generateTitleBar(title, isDone) {
 
     const tickBox = createDivWithClass('tick');
     if (isDone) tickBox.classList.add('ticked');
+    tickBox.addEventListener('click', handleTickboxClicked)
     titleContainer.appendChild(tickBox);
 
     const heading = document.createElement('h4');
@@ -95,6 +96,20 @@ function toggleArrowDirection(e) {
 //#endregion
 
 //#region EDITING/DELETING
+function handleTickboxClicked(e) {
+    const index = e.path.find(item => item.classList.contains('card')).dataset.index;
+    
+    e.currentTarget.classList.toggle('ticked');
+
+    const event = new CustomEvent('doneStatusUpdated', {
+        detail: {
+            index: index
+        }
+    });
+
+    document.dispatchEvent(event);
+}
+
 function handleEditTaskClicked(e) {
     const index = e.currentTarget.dataset.index;
 

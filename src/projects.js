@@ -43,6 +43,7 @@ document.addEventListener('newTaskSubmitted', handleNewTaskSubmitted);
 document.addEventListener('activeProjectUpdated', handleActiveProjectUpdated);
 document.addEventListener('taskDeleted', handleTaskDeleted);
 document.addEventListener('editTaskSubmitted', handleEditTask);
+document.addEventListener('doneStatusUpdated', handleDoneStatusUpdated);
 
 function handleNewProjectSubmitted(e) {
     tryAddProject(e.detail.title, false);
@@ -108,6 +109,14 @@ function handleEditTask(e) {
 
     dispatchTasksUpdatedEvent();
 }
+
+function handleDoneStatusUpdated(e) {
+    const index = e.detail.index;
+    
+    currentProject.toggleTaskDone(index);
+
+    dispatchTasksUpdatedEvent();
+}
 //#endregion
 
 
@@ -134,6 +143,10 @@ function _createNewProject(title, isDefault){
             task[property] = newValue;   // Not sure at all if this will work! 
             addToStorage(this.title, _extractProjectData(this));
         },
+        toggleTaskDone: function(itemIndex) {
+            this.todoList[itemIndex].done = !this.todoList[itemIndex].done;
+            addToStorage(this.title, _extractProjectData(this));
+        }
     }
 }
 
