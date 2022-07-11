@@ -13,33 +13,43 @@ document.addEventListener('tasksUpdated', handleTasksUpdated);
 function handleCurrentProjectUpdated(e) {
     const heading = document.querySelector('.heading h2');
     heading.textContent = e.detail.title;
-
-    updateTasksLeft(e.detail.tasks);
 }
 
 function handleTasksUpdated(e) {
-    clearAllTaskCards();
-
     const tasksArray = e.detail;
 
+    clearTaskArrays();
+    clearAllTaskCards();
+
+    // Create all cards and store them in the right array depending on done status.
     for (let i = 0; i < tasksArray.length; i++) {
         const card = createCard(tasksArray[i], i);
         // Find the right box to append card to (depending on priority level)
         const parentContainer = findContainer(tasksArray[i].priority);
-        parentContainer.appendChild(card);
+        // Adds card + its intended container to the right array
+        if (tasksArray[i].done === false) undoneTasks.push({card: card, parent: parentContainer});
+        else doneTasks.push({card: card, parent: parentContainer});
     }
 
-    updateTasksLeft(tasksArray);
-}
+    // Start by appending undone tasks so that they show up on top of the lists 
+    undoneTasks.forEach(task => {
+        const parent = task.parent;
+        const card = task.card;
 
-function updateTasksLeft(tasksArray) {
-    clearTaskArrays();
+        parent.appendChild(card);
+    })
+    // Then do the same with the done tasks 
+    doneTasks.forEach(task => {
+        const parent = task.parent;
+        const card = task.card;
 
-    tasksArray.forEach(task => {
-        if (task.done === false) undoneTasks.push(task);
-        else doneTasks.push(task);
+        parent.appendChild(card);
     })
 
+    updateTasksLeft();
+}
+
+function updateTasksLeft() {
     const tasksLeftElement = document.querySelector('.heading .tasks-left');
     tasksLeftElement.textContent = `${undoneTasks.length} tasks left`;
 }
