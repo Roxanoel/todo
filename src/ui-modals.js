@@ -97,7 +97,7 @@ function newTaskModal() {
     // Form contents creation - fields
     appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true);
     appendLabelAndTextarea(form, 'Description: ', descrInputID, false);
-    appendLabelAndInput(form, 'Due date: ', dateInputID, 'text', false);
+    appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', false);
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
     
     // Button
@@ -144,14 +144,13 @@ function createPriorityLevelDropdown(id) {
 }
 
 function handleSubmitNewTask(e) {
-    e.preventDefault();
 
     // FUNCTIONALITY
     const event = new CustomEvent('newTaskSubmitted', {
         detail: {
             title: document.getElementById(titleInputID).value,
             description: document.getElementById(descrInputID).value,
-            dueDate: document.getElementById(dateInputID).value,
+            dueDate: new Date(document.getElementById(dateInputID).value),
             priority: document.getElementById(priorityInputID).value
         }
     })
@@ -173,7 +172,7 @@ function editTaskModal(e) {
     // Form contents creation - fields
     appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true, e.detail.title);
     appendLabelAndTextarea(form, 'Description: ', descrInputID, false, e.detail.description);
-    appendLabelAndInput(form, 'Due date: ', dateInputID, 'text', false, e.detail.dueDate);
+    appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', true, Date.now());
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
 
     // Change default selection for priority level

@@ -50,7 +50,10 @@ function handleNewProjectSubmitted(e) {
 }
 
 function handleNewTaskSubmitted(e) {
+    console.log(e.detail.dueDate);
+    
     const task = createTodoItem(e.detail.title, e.detail.description, e.detail.dueDate, e.detail.priority);
+
     currentProject.addTodoItem(task);
     
     dispatchTasksUpdatedEvent();
