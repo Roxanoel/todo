@@ -101,8 +101,13 @@ function handleEditTaskClicked(e) {
 }
 
 function handleDeleteTaskClicked(e) {
-    console.log('Delete button clicked.')
-    console.log(e.currentTarget.dataset.index);
+    const event = new CustomEvent('taskDeleted', {
+        detail: {
+            index: e.currentTarget.dataset.index
+        }
+    });
+
+    document.dispatchEvent(event);
 }
 //#endregion
 

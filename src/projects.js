@@ -41,6 +41,7 @@ const projectsUpdatedEvent = new CustomEvent('projectsUpdated', {
 document.addEventListener('newProjectSubmitted', handleNewProjectSubmitted);
 document.addEventListener('newTaskSubmitted', handleNewTaskSubmitted);
 document.addEventListener('activeProjectUpdated', handleActiveProjectUpdated);
+document.addEventListener('taskDeleted', handleTaskDeleted)
 
 function handleNewProjectSubmitted(e) {
     tryAddProject(e.detail.title, false);
@@ -79,6 +80,14 @@ function dispatchTasksUpdatedEvent() {
     })
 
     document.dispatchEvent(tasksUpdated);
+}
+
+function handleTaskDeleted(e) {
+    const index = e.detail.index;
+    
+    currentProject.removeTodoItem(index);
+
+    dispatchTasksUpdatedEvent();
 }
 //#endregion
 
