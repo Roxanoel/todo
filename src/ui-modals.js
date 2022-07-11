@@ -171,9 +171,9 @@ function editTaskModal(e) {
     // Get a hold of the form
     const form = document.querySelector('.modal form');
     // Form contents creation - fields
-    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true);
-    appendLabelAndTextarea(form, 'Description: ', descrInputID, false);
-    appendLabelAndInput(form, 'Due date: ', dateInputID, 'text', false);
+    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true, e.detail.title);
+    appendLabelAndTextarea(form, 'Description: ', descrInputID, false, e.detail.description);
+    appendLabelAndInput(form, 'Due date: ', dateInputID, 'text', false, e.detail.dueDate);
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
     
     // Button

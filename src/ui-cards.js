@@ -96,9 +96,18 @@ function toggleArrowDirection(e) {
 
 //#region EDITING/DELETING
 function handleEditTaskClicked(e) {
+    const index = e.currentTarget.dataset.index;
+
+    const titleContent = document.querySelector(`.card[data-index="${index}"] .task-title`).textContent;
+    const dateContent = document.querySelector(`.card[data-index="${index}"] .date`).textContent.slice(4);  // Removes the "Due: ", for now. There is probably a better way to do this. 
+    const descrContent = document.querySelector(`.card[data-index="${index}"] .descr`).textContent;
+    
     const event = new CustomEvent('editTask', {
         detail: {
-            index: e.currentTarget.dataset.index
+            index: index,
+            title: titleContent,
+            dueDate: dateContent,
+            description: descrContent,
         }
     });
 
@@ -108,7 +117,7 @@ function handleEditTaskClicked(e) {
 function handleDeleteTaskClicked(e) {
     const event = new CustomEvent('taskDeleted', {
         detail: {
-            index: e.currentTarget.dataset.index
+            index: e.currentTarget.dataset.index,
         }
     });
 
