@@ -175,6 +175,9 @@ function editTaskModal(e) {
     appendLabelAndTextarea(form, 'Description: ', descrInputID, false, e.detail.description);
     appendLabelAndInput(form, 'Due date: ', dateInputID, 'text', false, e.detail.dueDate);
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
+
+    // Change default selection for priority level
+    document.getElementById(priorityInputID).value = e.detail.priority;
     
     // Button
     const btn = createButtonWithId('submit-form', 'Submit');

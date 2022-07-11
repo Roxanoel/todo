@@ -108,6 +108,7 @@ function handleEditTaskClicked(e) {
             title: titleContent,
             dueDate: dateContent,
             description: descrContent,
+            priority: getPriorityValue(e)
         }
     });
 
@@ -122,6 +123,13 @@ function handleDeleteTaskClicked(e) {
     });
 
     document.dispatchEvent(event);
+}
+
+function getPriorityValue(e) {
+    const box = e.path.find(item => item.classList.contains('task-box'));
+    if (box.classList.contains('med-priority')) return 'med-priority';
+    if (box.classList.contains('low-priority')) return 'low-priority';
+    return 'high-priority'; // Default value
 }
 //#endregion
 
