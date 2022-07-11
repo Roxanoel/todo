@@ -41,7 +41,8 @@ const projectsUpdatedEvent = new CustomEvent('projectsUpdated', {
 document.addEventListener('newProjectSubmitted', handleNewProjectSubmitted);
 document.addEventListener('newTaskSubmitted', handleNewTaskSubmitted);
 document.addEventListener('activeProjectUpdated', handleActiveProjectUpdated);
-document.addEventListener('taskDeleted', handleTaskDeleted)
+document.addEventListener('taskDeleted', handleTaskDeleted);
+document.addEventListener('editTaskSubmitted', handleEditTask);
 
 function handleNewProjectSubmitted(e) {
     tryAddProject(e.detail.title, false);
@@ -89,6 +90,25 @@ function handleTaskDeleted(e) {
 
     dispatchTasksUpdatedEvent();
 }
+
+function handleEditTask(e) {
+    const task = currentProject.todoList[e.detail.index];
+
+    // Make array with all properties in event's details except index
+    let properties = Object.entries(e.detail);
+    properties.splice(0, 1);
+
+    properties.forEach(propertyValueCouple => {
+        const propertyName = propertyValueCouple[0];
+        const value = propertyValueCouple[1];
+
+        currentProject.editTodoItem(task, propertyName, value);
+    })
+
+    console.log(properties);
+
+    dispatchTasksUpdatedEvent();
+}
 //#endregion
 
 
@@ -107,7 +127,11 @@ function _createNewProject(title, isDefault){
         removeTodoItem: function(itemIndex) {
             this.todoList.splice(+itemIndex, 1);
             addToStorage(this.title, _extractProjectData(this));
-        }
+        },
+        editTodoItem: function(task, property, newValue) {
+            if (property in task) 
+            task[property] = newValue;   // Not sure at all if this will work! 
+        },
     }
 }
 
