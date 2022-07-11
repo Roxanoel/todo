@@ -105,7 +105,6 @@ function handleEditTask(e) {
         currentProject.editTodoItem(task, propertyName, value);
     })
 
-    console.log(properties);
 
     dispatchTasksUpdatedEvent();
 }
@@ -133,6 +132,7 @@ function _createNewProject(title, isDefault){
             
             if (property in task) 
             task[property] = newValue;   // Not sure at all if this will work! 
+            addToStorage(this.title, _extractProjectData(this));
         },
     }
 }
