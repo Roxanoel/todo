@@ -9,8 +9,7 @@ function handleCurrentProjectUpdated(e) {
     const heading = document.querySelector('.heading h2');
     heading.textContent = e.detail.title;
 
-    const tasksLeft = document.querySelector('.heading .tasks-left');
-    tasksLeft.textContent = `${e.detail.tasks.length} tasks left`;
+    updateTasksLeft(e.detail.tasks);
 }
 
 function handleTasksUpdated(e) {
@@ -24,10 +23,23 @@ function handleTasksUpdated(e) {
         const parentContainer = findContainer(tasksArray[i].priority);
         parentContainer.appendChild(card);
     }
+
+    updateTasksLeft(tasksArray);
+}
+
+function updateTasksLeft(tasksArray) {
+    let tasksLeft = 0;
+
+    tasksArray.forEach(task => {
+        if (task.done === false) tasksLeft++;
+    })
+
+    const tasksLeftElement = document.querySelector('.heading .tasks-left');
+    tasksLeftElement.textContent = `${tasksLeft} tasks left`;
 }
 //#endregion
 
-//#region
+//#region CREATE MAIN 
 function createMain() {
     const main = document.createElement('main');
     // heading area
