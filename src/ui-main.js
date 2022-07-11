@@ -1,6 +1,11 @@
 import { createButtonWithId } from "./ui-utils";
 import { createCard } from './ui-cards';
 
+//#region STATE
+let doneTasks = [];
+let undoneTasks = [];
+//#endregion
+
 //#region EVENTS
 document.addEventListener('currentProjectUpdated', handleCurrentProjectUpdated)
 document.addEventListener('tasksUpdated', handleTasksUpdated);
@@ -28,14 +33,20 @@ function handleTasksUpdated(e) {
 }
 
 function updateTasksLeft(tasksArray) {
-    let tasksLeft = 0;
+    clearTaskArrays();
 
     tasksArray.forEach(task => {
-        if (task.done === false) tasksLeft++;
+        if (task.done === false) undoneTasks.push(task);
+        else doneTasks.push(task);
     })
 
     const tasksLeftElement = document.querySelector('.heading .tasks-left');
-    tasksLeftElement.textContent = `${tasksLeft} tasks left`;
+    tasksLeftElement.textContent = `${undoneTasks.length} tasks left`;
+}
+
+function clearTaskArrays() {
+    undoneTasks = [];
+    doneTasks = [];
 }
 //#endregion
 
