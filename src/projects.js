@@ -129,6 +129,8 @@ function _createNewProject(title, isDefault){
             addToStorage(this.title, _extractProjectData(this));
         },
         editTodoItem: function(task, property, newValue) {
+            if (newValue === '') return;
+            
             if (property in task) 
             task[property] = newValue;   // Not sure at all if this will work! 
         },
