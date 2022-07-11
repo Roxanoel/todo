@@ -96,8 +96,13 @@ function toggleArrowDirection(e) {
 
 //#region EDITING/DELETING
 function handleEditTaskClicked(e) {
-    console.log('Edit button clicked.')
-    console.log(e.currentTarget.dataset.index);
+    const event = new CustomEvent('editTask', {
+        detail: {
+            index: e.currentTarget.dataset.index
+        }
+    });
+
+    document.dispatchEvent(event);
 }
 
 function handleDeleteTaskClicked(e) {

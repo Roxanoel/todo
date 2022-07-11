@@ -7,6 +7,10 @@ const dateInputID = 'date-input';
 const priorityInputID = 'priority-input';
 //#endregion
 
+//#region EVENTS
+document.addEventListener('editTask', editTaskModal);
+//#endregion
+
 //#region CREATION
 
 function createModal() {
@@ -158,6 +162,51 @@ function handleSubmitNewTask(e) {
     // Closes the modal
     clearAndCloseModal();
 }
+//#endregion
+
+//#region EDIT TASK MODAL
+function editTaskModal(e) {
+    // Update heading
+    document.querySelector('.modal h2').textContent = 'Edit Task';
+    // Get a hold of the form
+    const form = document.querySelector('.modal form');
+    // Form contents creation - fields
+    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true);
+    appendLabelAndTextarea(form, 'Description: ', descrInputID, false);
+    appendLabelAndInput(form, 'Due date: ', dateInputID, 'text', false);
+    appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
+    
+    // Button
+    const btn = createButtonWithId('submit-form', 'Submit');
+    btn.setAttribute('data-index', e.detail.index);
+    form.appendChild(btn);
+    btn.addEventListener('click', handleEditTask);
+
+
+    // Visibility 
+    modalToggleHidden();
+}
+
+function handleEditTask(e) {
+    e.preventDefault();
+
+    // FUNCTIONALITY
+    const event = new CustomEvent('editTaskSubmitted', {
+        detail: {
+            index: e.currentTarget.dataset.index,
+            title: document.getElementById(titleInputID).value,
+            description: document.getElementById(descrInputID).value,
+            dueDate: document.getElementById(dateInputID).value,
+            priority: document.getElementById(priorityInputID).value
+        }
+    })
+
+    document.dispatchEvent(event);
+    
+    // Closes the modal
+    clearAndCloseModal();
+}
+
 //#endregion
 
 export {
