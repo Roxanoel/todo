@@ -18,4 +18,4 @@ const parsedDate = parseJSON(jsonDate);
 console.log(parsedDate);
 
 const dateTwo = new Date('Wed Jul 13 2022 15:06:22 GMT+0100 (British Summer Time)');
-console.log(differenceInCalendarDays(parsedDate, dateTwo));
+console.log(differenceInCalendarDays(Date.now(), dateTwo));

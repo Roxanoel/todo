@@ -1,5 +1,6 @@
 import { compareDesc } from "date-fns";
 import { createButtonWithId, createDivWithClass } from "./ui-utils";
+import { parseJSON, differenceInCalendarDays } from 'date-fns';
 
 //#region CARD CREATION 
 function createCard(taskData, index) {    
@@ -23,8 +24,9 @@ function generateCollapsedContents(taskData, index) {
     arrow.addEventListener('click', handleArrowClicked);
     collapsed.appendChild(arrow);
 
+
     const date = createDivWithClass('date');
-    date.textContent = `Due: ${taskData.dueDate}`;
+    date.textContent = parseAndFormatDate(taskData.dueDate);
     collapsed.appendChild(date);
 
     return collapsed;
@@ -44,6 +46,16 @@ function generateTitleBar(title, isDone) {
     titleContainer.appendChild(heading);
 
     return titleContainer;
+}
+
+function parseAndFormatDate(date) {
+    const parsedDate = parseJSON(date);
+
+    const timeDifference = differenceInCalendarDays(Date.now(), parsedDate);
+
+    if (timeDifference === 0) return 'Due today';
+    if (timeDifference < 0 ) return `Due in ${Math.abs(timeDifference)} day(s)`;
+    else return `Due ${timeDifference} day(s) ago`;
 }
 
 function generateExpandedContents(taskData, index) {
