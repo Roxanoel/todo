@@ -116,7 +116,16 @@ function editProjectModal(e) {
 }
 
 function handleEditProject(form) {
-    console.log('Handling edit project');
+
+    const event = new CustomEvent('editProjectSubmitted', {
+        detail: {
+            title: form.elements[titleInputID].value
+        }
+    })
+
+    document.dispatchEvent(event);
+
+    clearAndCloseModal();
 }
 
 //#endregion

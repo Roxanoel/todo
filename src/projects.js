@@ -45,6 +45,7 @@ document.addEventListener('taskDeleted', handleTaskDeleted);
 document.addEventListener('editTaskSubmitted', handleEditTask);
 document.addEventListener('doneStatusUpdated', handleDoneStatusUpdated);
 document.addEventListener('deleteProject', handleDeleteProject);
+document.addEventListener('editProjectSubmitted', handleEditProjectSubmitted);
 
 function handleNewProjectSubmitted(e) {
     const newProject = tryAddProject(e.detail.title, false);
@@ -53,6 +54,13 @@ function handleNewProjectSubmitted(e) {
 
     // Sets current project to the newly added project
     currentProject = projects[projects.length - 1];
+
+    document.dispatchEvent(projectsUpdatedEvent);
+    dispatchCurrentProjectUpdatedEvent();
+}
+
+function handleEditProjectSubmitted(e) {
+    currentProject.editProjectTitle(e.detail.title);
 
     document.dispatchEvent(projectsUpdatedEvent);
     dispatchCurrentProjectUpdatedEvent();
@@ -154,6 +162,16 @@ function _createNewProject(title, isDefault){
         default: isDefault,
 
         //functions
+        editProjectTitle: function(newTitle) {
+            // Check if name is empty
+            if (!newTitle) return;
+            // Otherwise, first delete old entry from storage
+            removeFromStorage(this.title);
+            // Change name
+            this.title = newTitle;
+            // Save entry again but with the new title. 
+            addToStorage(this.title);
+        },
         addTodoItem: function(item) {
             this.todoList.push(item);
             addToStorage(this.title, _extractProjectData(this));
