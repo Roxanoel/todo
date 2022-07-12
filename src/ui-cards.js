@@ -53,6 +53,7 @@ function parseAndFormatDate(date) {
 
     const timeDifference = differenceInCalendarDays(Date.now(), parsedDate);
 
+    if (!timeDifference) return 'Due anytime';
     if (timeDifference === 0) return 'Due today';
     if (timeDifference < 0 ) return `Due in ${Math.abs(timeDifference)} day(s)`;
     else return `Due ${timeDifference} day(s) ago`;
