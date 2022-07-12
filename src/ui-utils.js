@@ -19,6 +19,8 @@ function appendLabelAndInput(parent, labelText, id, inputType, isRequired, place
 
     parent.appendChild(label);
     parent.appendChild(input);
+
+    return input;
 }
 
 function appendLabelAndTextarea(parent, labelText, id, isRequired, placeholder) {
@@ -34,6 +36,8 @@ function appendLabelAndTextarea(parent, labelText, id, isRequired, placeholder) 
 
     parent.appendChild(label);
     parent.appendChild(input);
+
+    return input;
 }
 
 function createDivWithClass(className) {
