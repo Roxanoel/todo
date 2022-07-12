@@ -126,7 +126,13 @@ function createTaskBox(priorityClass) {
 
 //#region HANDLERS for buttons
 function handleEditProject(e) {
-    // Bring up modal that allows user to change the name of the project. 
+    // Brings up modal that allows user to change the name of the project. 
+    const event = new CustomEvent('editProject', {
+        detail: {
+            title: document.querySelector('.heading h2').textContent
+        }
+    });
+    document.dispatchEvent(event);
 }
 
 function handleDeleteProject(e) {

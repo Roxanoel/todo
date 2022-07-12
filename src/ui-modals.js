@@ -9,6 +9,7 @@ const priorityInputID = 'priority-input';
 
 //#region EVENTS
 document.addEventListener('editTask', editTaskModal);
+document.addEventListener('editProject', editProjectModal)
 //#endregion
 
 //#region CREATION
@@ -91,6 +92,33 @@ function handleSubmitNewProject() {
     // Closes the modal
     clearAndCloseModal();
 }
+//#endregion
+
+//#region EDIT PROJECT MODAL
+
+function editProjectModal(e) {
+    // Update heading
+    document.querySelector('.modal h2').textContent = 'Edit Project';
+    // Get a hold of the form
+    const form = document.querySelector('.modal form');
+    // Form contents creation
+    const textInput = appendLabelAndInput(form, 'Title: ', titleInputID, 'text', false, e.detail.title);
+    textInput.maxLength = 20;
+    // Button
+    const btn = createButtonWithId('submit-form', 'Submit');
+    form.appendChild(btn);
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleEditProject(form);
+    });
+    // Visibility
+    modalToggleHidden();
+}
+
+function handleEditProject(form) {
+    console.log('Handling edit project');
+}
+
 //#endregion
 
 //#region TASK CREATION MODAL
