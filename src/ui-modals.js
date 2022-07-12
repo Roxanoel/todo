@@ -64,7 +64,8 @@ function newProjectModal() {
     // Get a hold of the form
     const form = document.querySelector('.modal form');
     // Form contents creation
-    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true);
+    const textInput = appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true);
+    textInput.maxLength = 20;
     // Button
     const btn = createButtonWithId('submit-form', 'Add project');
     form.appendChild(btn);
