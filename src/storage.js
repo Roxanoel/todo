@@ -18,7 +18,7 @@ function retrieveAllFromStorage() {
         i = keys.length;
 
     while ( i-- ) {
-        objects.push( retrieveFromStorage(keys[i]) );
+        objects.push(retrieveFromStorage(keys[i]));
     }
 
     return objects;
@@ -74,5 +74,6 @@ retrieveFromStorage,
 removeFromStorage,
 clearStorage,
 retrieveAllFromStorage,
+storageAvailable
 };
 //#endregion

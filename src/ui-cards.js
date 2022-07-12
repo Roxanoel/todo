@@ -1,4 +1,3 @@
-import { compareDesc } from "date-fns";
 import { createButtonWithId, createDivWithClass } from "./ui-utils";
 import { parseJSON, differenceInCalendarDays } from 'date-fns';
 

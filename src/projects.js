@@ -1,4 +1,4 @@
-import _, { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./storage.js";
+import { addToStorage, removeFromStorage, retrieveAllFromStorage } from "./storage.js";
 import { createTodoItem } from "./todo.js";
 
 //#region STATE
@@ -27,7 +27,7 @@ function initializeProjectsList(){
     currentProject = projects[0];
     
     document.dispatchEvent(projectsUpdatedEvent);
-};
+}
 //#endregion
 
 //#region EVENTS - DEFINITION
@@ -172,6 +172,7 @@ function _createNewProject(title, isDefault){
             this.title = newTitle;
             // Save entry again but with the new title. 
             addToStorage(this.title, _extractProjectData(this));
+            console.log(localStorage);
         },
         addTodoItem: function(item) {
             this.todoList.push(item);
@@ -224,13 +225,6 @@ function _addProject(project) {
     projects.push(project);
     // Dispatch event to notify listeners that project list was changed 
     document.dispatchEvent(projectsUpdatedEvent);
-}
-
-function _deleteProject(index) {
-    const proj = projects[+index];
-    
-    removeFromStorage(proj.title);
-    projects.splice(+index, 1);
 }
 
 function _checkForDefault() {

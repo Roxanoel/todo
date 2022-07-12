@@ -1,9 +1,8 @@
 import './style.css';
 
-import { generateGeneralLayout, updateProjectsList, initializeSelectedProject } from "./uimanager.js";
-import { tryAddProject, getProjects, initializeProjectsList } from "./projects.js";
+import { generateGeneralLayout, initializeSelectedProject } from "./uimanager.js";
+import { initializeProjectsList } from "./projects.js";
 
-import { parseJSON, differenceInCalendarDays } from 'date-fns';
 
 generateGeneralLayout();
 initializeProjectsList();

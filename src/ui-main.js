@@ -82,7 +82,7 @@ function createMain() {
     return main;
 }
 
-function createHeadingArea(currentProject) {
+function createHeadingArea() {
     const headingArea = document.createElement('div');
     headingArea.classList.add('heading-area');
 
@@ -125,7 +125,7 @@ function createTaskBox(priorityClass) {
 //#endregion
 
 //#region HANDLERS for buttons
-function handleEditProject(e) {
+function handleEditProject() {
     // Brings up modal that allows user to change the name of the project. 
     const event = new CustomEvent('editProject', {
         detail: {
@@ -135,7 +135,7 @@ function handleEditProject(e) {
     document.dispatchEvent(event);
 }
 
-function handleDeleteProject(e) {
+function handleDeleteProject() {
     const event = new Event('deleteProject');
     document.dispatchEvent(event);
 }
