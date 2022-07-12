@@ -102,6 +102,8 @@ function handleEditTask(e) {
     let properties = Object.entries(e.detail);
     properties.splice(0, 1);
 
+    console.log(properties);
+
     properties.forEach(propertyValueCouple => {
         const propertyName = propertyValueCouple[0];
         const value = propertyValueCouple[1];
@@ -140,10 +142,10 @@ function _createNewProject(title, isDefault){
             addToStorage(this.title, _extractProjectData(this));
         },
         editTodoItem: function(task, property, newValue) {
-            if (newValue === '') return;
-            
+            if (!newValue || newValue.toString() === 'Invalid Date') return;
+
             if (property in task) 
-            task[property] = newValue;   // Not sure at all if this will work! 
+            task[property] = newValue;  
             addToStorage(this.title, _extractProjectData(this));
         },
         toggleTaskDone: function(itemIndex) {

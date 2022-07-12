@@ -95,8 +95,8 @@ function newTaskModal() {
     // Get a hold of the form
     const form = document.querySelector('.modal form');
     // Form contents creation - fields
-    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true);
-    appendLabelAndTextarea(form, 'Description: ', descrInputID, false);
+    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true, 'What is the task?');
+    appendLabelAndTextarea(form, 'Description: ', descrInputID, false, 'Optional');
     appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', false);
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
     
@@ -172,7 +172,7 @@ function editTaskModal(e) {
     // Form contents creation - fields
     appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true, e.detail.title);
     appendLabelAndTextarea(form, 'Description: ', descrInputID, false, e.detail.description);
-    appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', true, Date.now());
+    appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', true, '');
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
 
     // Change default selection for priority level
@@ -198,7 +198,7 @@ function handleEditTask(e) {
             index: e.currentTarget.dataset.index,
             title: document.getElementById(titleInputID).value,
             description: document.getElementById(descrInputID).value,
-            dueDate: document.getElementById(dateInputID).value,
+            dueDate: new Date(document.getElementById(dateInputID).value),
             priority: document.getElementById(priorityInputID).value
         }
     })
