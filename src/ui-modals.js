@@ -66,13 +66,15 @@ function newProjectModal() {
     // Button
     const btn = createButtonWithId('submit-form', 'Add project');
     form.appendChild(btn);
-    btn.addEventListener('click', handleSubmitNewProject);
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleSubmitNewProject();
+    });
     // Visibility
     modalToggleHidden();
 }
 
-function handleSubmitNewProject(e) {
-    e.preventDefault();
+function handleSubmitNewProject() {
 
     // FUNCTIONALITY
     const event = new CustomEvent('newProjectSubmitted', {
