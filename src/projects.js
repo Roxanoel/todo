@@ -44,6 +44,7 @@ document.addEventListener('activeProjectUpdated', handleActiveProjectUpdated);
 document.addEventListener('taskDeleted', handleTaskDeleted);
 document.addEventListener('editTaskSubmitted', handleEditTask);
 document.addEventListener('doneStatusUpdated', handleDoneStatusUpdated);
+document.addEventListener('deleteProject', handleDeleteProject);
 
 function handleNewProjectSubmitted(e) {
     tryAddProject(e.detail.title, false);
@@ -116,6 +117,22 @@ function handleDoneStatusUpdated(e) {
     currentProject.toggleTaskDone(index);
 
     dispatchTasksUpdatedEvent();
+}
+
+function handleDeleteProject() {    
+    if (currentProject.default === true) {
+        alert('Cannot delete default project');
+        return;
+    }
+
+    const currentProjectIndex = projects.indexOf(currentProject);
+    projects.splice(currentProjectIndex, 1);
+    removeFromStorage(currentProject.title);
+    
+    currentProject = projects[0];
+
+    document.dispatchEvent(projectsUpdatedEvent);
+    dispatchCurrentProjectUpdatedEvent();
 }
 //#endregion
 

@@ -100,8 +100,10 @@ function createHeadingArea(currentProject) {
     const addBtn = createButtonWithId('add-task', '');
 
     const editBtn = createButtonWithId('edit-project', '');
+    editBtn.addEventListener('click', handleEditProject)
 
     const deleteBtn = createButtonWithId('delete-project', '');
+    deleteBtn.addEventListener('click', handleDeleteProject);
 
     heading.appendChild(projectName);
     heading.appendChild(tasksLeft);
@@ -120,6 +122,18 @@ function createTaskBox(priorityClass) {
     box.appendChild(document.createElement('h3'));
     return box;
 }
+//#endregion
+
+//#region HANDLERS for buttons
+function handleEditProject(e) {
+    // Bring up modal that allows user to change the name of the project. 
+}
+
+function handleDeleteProject(e) {
+    const event = new Event('deleteProject');
+    document.dispatchEvent(event);
+}
+
 //#endregion
 
 //#region CARDS
