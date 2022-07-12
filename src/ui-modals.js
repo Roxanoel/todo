@@ -100,8 +100,10 @@ function newTaskModal() {
     // Get a hold of the form
     const form = document.querySelector('.modal form');
     // Form contents creation - fields
-    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true, 'What is the task?');
-    appendLabelAndTextarea(form, 'Description: ', descrInputID, false, 'Optional');
+    const titleInput = appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true, 'What is the task?');
+    titleInput.maxLength = 25;
+    const descr = appendLabelAndTextarea(form, 'Description: ', descrInputID, false, 'Optional');
+    descr.maxLength = 200;
     appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', false);
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
     
@@ -179,8 +181,10 @@ function editTaskModal(e) {
     // Get a hold of the form
     const form = document.querySelector('.modal form');
     // Form contents creation - fields
-    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', false, e.detail.title);
-    appendLabelAndTextarea(form, 'Description: ', descrInputID, false, e.detail.description);
+    const titleInput = appendLabelAndInput(form, 'Title: ', titleInputID, 'text', false, e.detail.title);
+    titleInput.maxLength = 25;
+    const descr = appendLabelAndTextarea(form, 'Description: ', descrInputID, false, e.detail.description);
+    descr.maxLength = 200;
     appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', false, '');
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
 
