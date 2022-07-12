@@ -70,7 +70,8 @@ function dispatchCurrentProjectUpdatedEvent() {
     const currentProjectUpdated = new CustomEvent('currentProjectUpdated', {
         detail: {
             title: currentProject.title,
-            tasks: currentProject.todoList
+            tasks: currentProject.todoList, 
+            index: projects.indexOf(currentProject)
         }
     })
 

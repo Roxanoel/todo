@@ -24,6 +24,18 @@ function createSidebar() {
 }
 //#endregion
 
+//#region EVENT LISTENERS
+
+document.addEventListener('currentProjectUpdated', handleCurrentProjectUpdated);
+
+function handleCurrentProjectUpdated(e) {
+    const index = e.detail.index;
+    const listItem = document.querySelector(`.projects-list [data-index="${index}"]`);
+    applySelectedStyle(listItem);
+}
+
+//#endregion
+
 //#region INIT 
 function initializeSelectedProject() {
     applySelectedStyle(document.querySelector('.projects-list :first-child'));
