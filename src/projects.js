@@ -47,7 +47,15 @@ document.addEventListener('doneStatusUpdated', handleDoneStatusUpdated);
 document.addEventListener('deleteProject', handleDeleteProject);
 
 function handleNewProjectSubmitted(e) {
-    tryAddProject(e.detail.title, false);
+    const newProject = tryAddProject(e.detail.title, false);
+
+    if (!newProject) return;  // Will work with any falsy value
+
+    // Sets current project to the newly added project
+    currentProject = projects[projects.length - 1];
+
+    document.dispatchEvent(projectsUpdatedEvent);
+    dispatchCurrentProjectUpdatedEvent();
 }
 
 function handleNewTaskSubmitted(e) {
