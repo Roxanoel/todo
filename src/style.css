@@ -285,6 +285,10 @@ main {
     color: var(--text-dark);
     font-weight: 700;
     font-size: 1.1rem;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .collapsed .date {

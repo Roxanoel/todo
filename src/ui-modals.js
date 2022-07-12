@@ -150,7 +150,7 @@ function newTaskModal() {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        handleSubmitNewTask();
+        handleSubmitNewTask(form);
     });
 
 
@@ -191,15 +191,15 @@ function createPriorityLevelDropdown(id) {
     return select;
 }
 
-function handleSubmitNewTask() {
+function handleSubmitNewTask(form) {
 
     // FUNCTIONALITY
     const event = new CustomEvent('newTaskSubmitted', {
         detail: {
-            title: document.getElementById(titleInputID).value,
-            description: document.getElementById(descrInputID).value,
-            dueDate: new Date(document.getElementById(dateInputID).value),
-            priority: document.getElementById(priorityInputID).value
+            title: form.elements[titleInputID].value,
+            description: form.elements[descrInputID].value,
+            dueDate: new Date(form.elements[dateInputID].value),
+            priority: form[priorityInputID].value
         }
     })
 
