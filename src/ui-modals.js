@@ -36,11 +36,13 @@ function modalToggleHidden(){
 }
 
 function clearModalContents() {
-    const form = document.querySelector('.modal form');
+    
+    const modalContents = document.querySelector('.modal-contents');
 
-    while (form.lastChild) {
-        form.removeChild(form.lastChild);
-    }
+    const form = document.querySelector('.modal-contents form');
+
+    modalContents.removeChild(form);
+    modalContents.appendChild(document.createElement('form'));
 }
 
 function clearAndCloseModal() {
@@ -176,9 +178,9 @@ function editTaskModal(e) {
     // Get a hold of the form
     const form = document.querySelector('.modal form');
     // Form contents creation - fields
-    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', true, e.detail.title);
+    appendLabelAndInput(form, 'Title: ', titleInputID, 'text', false, e.detail.title);
     appendLabelAndTextarea(form, 'Description: ', descrInputID, false, e.detail.description);
-    appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', true, '');
+    appendLabelAndInput(form, 'Due date: ', dateInputID, 'date', false, '');
     appendLabelAndDropdown(form, 'Priority level: ', priorityInputID)
 
     // Change default selection for priority level
@@ -186,26 +188,29 @@ function editTaskModal(e) {
     
     // Button
     const btn = createButtonWithId('submit-form', 'Submit');
-    btn.setAttribute('data-index', e.detail.index);
     form.appendChild(btn);
-    btn.addEventListener('click', handleEditTask);
+    form.setAttribute('data-index', e.detail.index);
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        handleEditTask(form);
+    });
 
 
     // Visibility 
     modalToggleHidden();
 }
 
-function handleEditTask(e) {
-    e.preventDefault();
-
+function handleEditTask(form) {
+    
     // FUNCTIONALITY
     const event = new CustomEvent('editTaskSubmitted', {
         detail: {
-            index: e.currentTarget.dataset.index,
-            title: document.getElementById(titleInputID).value,
-            description: document.getElementById(descrInputID).value,
-            dueDate: new Date(document.getElementById(dateInputID).value),
-            priority: document.getElementById(priorityInputID).value
+            index: form.dataset.index,
+            title: form.elements[titleInputID].value,
+            description: form.elements[descrInputID].value,
+            dueDate: new Date(form.elements[dateInputID].value),
+            priority: form[priorityInputID].value
         }
     })
 
