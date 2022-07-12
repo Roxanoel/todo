@@ -105,7 +105,11 @@ function newTaskModal() {
     // Button
     const btn = createButtonWithId('submit-form', 'Add task');
     form.appendChild(btn);
-    btn.addEventListener('click', handleSubmitNewTask);
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        handleSubmitNewTask();
+    });
 
 
     // Visibility 
@@ -145,7 +149,7 @@ function createPriorityLevelDropdown(id) {
     return select;
 }
 
-function handleSubmitNewTask(e) {
+function handleSubmitNewTask() {
 
     // FUNCTIONALITY
     const event = new CustomEvent('newTaskSubmitted', {
