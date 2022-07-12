@@ -167,10 +167,11 @@ function _createNewProject(title, isDefault){
             if (!newTitle) return;
             // Otherwise, first delete old entry from storage
             removeFromStorage(this.title);
+            console.log(localStorage);
             // Change name
             this.title = newTitle;
             // Save entry again but with the new title. 
-            addToStorage(this.title);
+            addToStorage(this.title, _extractProjectData(this));
         },
         addTodoItem: function(item) {
             this.todoList.push(item);
