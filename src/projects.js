@@ -50,8 +50,6 @@ function handleNewProjectSubmitted(e) {
 }
 
 function handleNewTaskSubmitted(e) {
-    console.log(e.detail.dueDate);
-    
     const task = createTodoItem(e.detail.title, e.detail.description, e.detail.dueDate, e.detail.priority);
 
     currentProject.addTodoItem(task);
@@ -62,7 +60,6 @@ function handleNewTaskSubmitted(e) {
 function handleActiveProjectUpdated(e) {
     const index = e.detail.index;
     currentProject = projects[index];
-    console.log(currentProject);
 
     dispatchCurrentProjectUpdatedEvent();
     dispatchTasksUpdatedEvent();
@@ -101,8 +98,6 @@ function handleEditTask(e) {
     // Make array with all properties in event's details except index
     let properties = Object.entries(e.detail);
     properties.splice(0, 1);
-
-    console.log(properties);
 
     properties.forEach(propertyValueCouple => {
         const propertyName = propertyValueCouple[0];

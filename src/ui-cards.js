@@ -52,9 +52,7 @@ function parseAndFormatDate(date) {
     const parsedDate = parseJSON(date);
 
     const timeDifference = differenceInCalendarDays(Date.now(), parsedDate);
-
-    console.log(timeDifference);
-
+    
     if (timeDifference === 0) return 'Due today';
     if (!timeDifference) return 'Due anytime';
     if (timeDifference < 0 ) return `Due in ${Math.abs(timeDifference)} day(s)`;
